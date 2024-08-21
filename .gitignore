@@ -1,0 +1,71 @@
+# Python compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pyo
+
+# Django migrations
+**/migrations/**/__pycache__/
+**/migrations/**/*.pyc
+**/migrations/*.pyc
+**/migrations/*.pyo
+**/migrations/*.pyd
+
+# Django settings (for local development)
+*.local_settings.py
+
+# Environment variables file
+.env
+
+# Django static files
+staticfiles/
+static/
+
+# Media files
+media/
+
+# SQLite database files
+*.sqlite3
+
+# Django cache files
+**/cache/
+**/cache/*.cache
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Node modules (if using Node.js for front-end)
+node_modules/
+
+# Log files
+*.log
+*.log.*
+*.out
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# Test result files
+.junit.xml
+.test/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
