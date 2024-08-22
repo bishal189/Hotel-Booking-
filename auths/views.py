@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 
 def login(request):
+    print('login')
     return render(request,'accounts/login.html')
 
 def register(request):
