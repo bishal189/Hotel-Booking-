@@ -111,8 +111,8 @@
                 <div class="row align-items-center">
                     <div class="col-md-6 aos aos-init aos-animate" data-aos="fade-up">
                         <div class="section-heading">
-                            <h2>Featu<span class="title-right">red</span> Ads</h2>
-                            <p>Checkout these latest cool ads from our members</p>
+                            <h2>Featu<span class="title-right">red</span> Rooms</h2>
+                            <p>Checkout these latest cool Hotel Room from our Hotel</p>
                         </div>
                     </div>
                     <div class="col-md-6 text-md-end aos" data-aos="fade-up">
@@ -122,14 +122,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="owl-carousel featured-slider grid-view">
+
+                            {% for hotelroom in hotel_room %}
                             <div class="card aos" data-aos="fade-up">
                                 <div class="blog-widget">
                                     <div class="blog-img">
                                         <a href="service-details.html">
-                                            <img src="{% static 'assets/img/featured/feature-9.jpg' %}" class="img-fluid" alt="blog-img">
+                                            <img src="{{ hotelroom.hotel_images.url }}" class="img-fluid" alt="blog-img">
                                         </a>
                                         <div class="fav-item">
-                                            <span class="featured-text">Featured</span>
+                                            <span class="featured-text">Available</span>
                                             <a href="javascript:void(0)" class="fav-icon">
                                                 <i class="feather-heart"></i>
                                             </a>
@@ -138,278 +140,43 @@
                                     <div class="bloglist-content">
                                         <div class="card-body">
                                             <div class="blogfeaturelink">
-                                                <div class="grid-author">
-                                                    <img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="author">
-                                                </div>
+                                                
                                                 <div class="blog-features">
-                                                    <a href="javascript:void(0)"><span><i class="fa-regular fa-circle-stop"></i> Education</span></a>
+                                                    <a href="javascript:void(0)"><span><i class="fa-regular fa-circle-stop"></i>{{hotelroom.category.name}}</span></a>
                                                 </div>
                                                 <div class="blog-author text-end">
                                                     <span><i class="feather-eye"></i>4000</span>
                                                 </div>
                                             </div>
-                                            <h6><a href="service-details.html">2017 Gulfstream Ameri-lite</a></h6>
+                                          
+
+                                            <h6><a href="service-details.html">{{hotelroom.room_number}}</a></h6>
                                             <div class="blog-location-details">
                                                 <div class="location-info">
-                                                    <i class="feather-map-pin"></i> Los Angeles
+                                                    <i class="feather-map-pin"></i>Cyrpus
+                                                    &nbsp
+                                                    <i class="fa-regular fa-clock"></i>Open
                                                 </div>
                                                 <div class="location-info">
-                                                    <i class="fa-regular fa-calendar-days"></i> 06 Oct, 2022
+                                                    <i class="fa-regular fa-calendar-days"></i>{{hotelroom.room_type}}
                                                 </div>
                                             </div>
+                                            
                                             <div class="amount-details">
                                                 <div class="amount">
-                                                    <span class="validrate">$350</span>
+                                                    <span class="validrate">${{hotelroom.price_per_night}}</span>
                                                     <span>$450</span>
                                                 </div>
                                                 <div class="ratings">
-                                                    <span>4.7</span> (50)
+                                                   Capacity : {{hotelroom.capacity}}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card aos" data-aos="fade-up">
-                                <div class="blog-widget">
-                                    <div class="blog-img">
-                                        <a href="service-details.html">
-                                            <img src="{% static 'assets/img/featured/feature-2.jpg' %}" class="img-fluid" alt="blog-img">
-                                        </a>
-                                        <div class="fav-item">
-                                            <span class="featured-text">Featured</span>
-                                            <a href="javascript:void(0)" class="fav-icon">
-                                                <i class="feather-heart"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="bloglist-content">
-                                        <div class="card-body">
-                                            <div class="blogfeaturelink">
-                                                <div class="grid-author">
-                                                    <img src="{% static 'assets/img/profiles/avatar-05.jpg' %}" alt="author">
-                                                </div>
-                                                <div class="blog-features">
-                                                    <a href="javascript:void(0)"><span><i class="fa-regular fa-circle-stop"></i> Electronics</span></a>
-                                                </div>
-                                                <div class="blog-author text-end">
-                                                    <span><i class="feather-eye"></i>4000</span>
-                                                </div>
-                                            </div>
-                                            <h6><a href="service-details.html">Fashion luxury Men date</a></h6>
-                                            <div class="blog-location-details">
-                                                <div class="location-info">
-                                                    <i class="feather-map-pin"></i> Los Angeles
-                                                </div>
-                                                <div class="location-info">
-                                                    <i class="fa-solid fa-calendar-days"></i> 08 Oct, 2022
-                                                </div>
-                                            </div>
-                                            <div class="amount-details">
-                                                <div class="amount">
-                                                    <span class="validrate">$250</span>
-                                                    <span>$350</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <span>4.6</span> (50)
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card aos" data-aos="fade-up">
-                                <div class="blog-widget">
-                                    <div class="blog-img">
-                                        <a href="service-details.html">
-                                            <img src="{% static 'assets/img/featured/feature-3.jpg' %}" class="img-fluid" alt="blog-img">
-                                        </a>
-                                        <div class="fav-item">
-                                            <span class="featured-text">Featured</span>
-                                            <a href="javascript:void(0)" class="fav-icon">
-                                                <i class="feather-heart"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="bloglist-content">
-                                        <div class="card-body">
-                                            <div class="blogfeaturelink">
-                                                <div class="grid-author">
-                                                    <img src="{% static 'assets/img/profiles/avatar-04.jpg' %}" alt="author">
-                                                </div>
-                                                <div class="blog-features">
-                                                    <a href="javascript:void(0)"><span><i class="fa-regular fa-circle-stop"></i> Electronics</span></a>
-                                                </div>
-                                                <div class="blog-author text-end">
-                                                    <span><i class="feather-eye"></i>4000</span>
-                                                </div>
-                                            </div>
-                                            <h6><a href="service-details.html">Apple iPhone 6 16GB 4G LTE</a></h6>
-                                            <div class="blog-location-details">
-                                                <div class="location-info">
-                                                    <i class="feather-map-pin"></i> Los Angeles
-                                                </div>
-                                                <div class="location-info">
-                                                    <i class="fa-solid fa-calendar-days"></i> 09 Oct, 2022
-                                                </div>
-                                            </div>
-                                            <div class="amount-details">
-                                                <div class="amount">
-                                                    <span class="validrate">$550</span>
-                                                    <span>$400</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <span>4.7</span> (50)
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card aos" data-aos="fade-up">
-                                <div class="blog-widget">
-                                    <div class="blog-img">
-                                        <a href="service-details.html">
-                                            <img src="{% static 'assets/img/featured/feature-4.jpg' %}" class="img-fluid" alt="blog-img">
-                                        </a>
-                                        <div class="fav-item">
-                                            <span class="featured-text">Featured</span>
-                                            <a href="javascript:void(0)" class="fav-icon">
-                                                <i class="feather-heart"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="bloglist-content">
-                                        <div class="card-body">
-                                            <div class="blogfeaturelink">
-                                                <div class="grid-author">
-                                                    <img src="{% static 'assets/img/profiles/avatar-05.jpg' %}" alt="author">
-                                                </div>
-                                                <div class="blog-features">
-                                                    <a href="javascript:void(0)"><span><i class="fa-regular fa-circle-stop"></i> Gadgets</span></a>
-                                                </div>
-                                                <div class="blog-author text-end">
-                                                    <span><i class="feather-eye"></i>4000</span>
-                                                </div>
-                                            </div>
-                                            <h6><a href="service-details.html">Customized Apple iMac</a></h6>
-                                            <div class="blog-location-details">
-                                                <div class="location-info">
-                                                    <i class="feather-map-pin"></i> Los Angeles
-                                                </div>
-                                                <div class="location-info">
-                                                    <i class="fa-solid fa-calendar-days"></i> 10 Oct, 2022
-                                                </div>
-                                            </div>
-                                            <div class="amount-details">
-                                                <div class="amount">
-                                                    <span class="validrate">$450</span>
-                                                    <span>$300</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <span>4.5</span> (50)
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card aos" data-aos="fade-up">
-                                <div class="blog-widget">
-                                    <div class="blog-img">
-                                        <a href="service-details.html">
-                                            <img src="{% static 'assets/img/featured/feature-9.jpg' %}" class="img-fluid" alt="blog-img">
-                                        </a>
-                                        <div class="fav-item">
-                                            <span class="featured-text">Featured</span>
-                                            <a href="javascript:void(0)" class="fav-icon">
-                                                <i class="feather-heart"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="bloglist-content">
-                                        <div class="card-body">
-                                            <div class="blogfeaturelink">
-                                                <div class="grid-author">
-                                                    <img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="author">
-                                                </div>
-                                                <div class="blog-features">
-                                                    <a href="javascript:void(0)"><span><i class="fa-regular fa-circle-stop"></i> Education</span></a>
-                                                </div>
-                                                <div class="blog-author text-end">
-                                                    <span><i class="feather-eye"></i>4000</span>
-                                                </div>
-                                            </div>
-                                            <h6><a href="service-details.html">2017 Gulfstream Ameri-lite</a></h6>
-                                            <div class="blog-location-details">
-                                                <div class="location-info">
-                                                    <i class="feather-map-pin"></i> Los Angeles
-                                                </div>
-                                                <div class="location-info">
-                                                    <i class="fa-solid fa-calendar-days"></i> 06 Oct, 2022
-                                                </div>
-                                            </div>
-                                            <div class="amount-details">
-                                                <div class="amount">
-                                                    <span class="validrate">$350</span>
-                                                    <span>$450</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <span>4.7</span> (50)
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card aos" data-aos="fade-up">
-                                <div class="blog-widget">
-                                    <div class="blog-img">
-                                        <a href="service-details.html">
-                                            <img src="{% static 'assets/img/featured/feature-5.jpg' %}" class="img-fluid" alt="blog-img">
-                                        </a>
-                                        <div class="fav-item">
-                                            <span class="featured-text">Featured</span>
-                                            <a href="javascript:void(0)" class="fav-icon">
-                                                <i class="feather-heart"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="bloglist-content">
-                                        <div class="card-body">
-                                            <div class="blogfeaturelink">
-                                                <div class="grid-author">
-                                                    <img src="{% static 'assets/img/profiles/avatar-06.jpg' %}" alt="author">
-                                                </div>
-                                                <div class="blog-features">
-                                                    <a href="javascript:void(0)"><span><i class="fa-regular fa-circle-stop"></i> Construction</span></a>
-                                                </div>
-                                                <div class="blog-author text-end">
-                                                    <span><i class="feather-eye"></i>4000</span>
-                                                </div>
-                                            </div>
-                                            <h6><a href="service-details.html">Villa 457 sq.m. In Benidorm Fully</a></h6>
-                                            <div class="blog-location-details">
-                                                <div class="location-info">
-                                                    <i class="feather-map-pin"></i> Los Angeles
-                                                </div>
-                                                <div class="location-info">
-                                                    <i class="fa-solid fa-calendar-days"></i> 11 Oct, 2022
-                                                </div>
-                                            </div>
-                                            <div class="amount-details">
-                                                <div class="amount">
-                                                    <span class="validrate">$650</span>
-                                                    <span>$600</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <span>4.5</span> (50)
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
+                           
                         </div>
                     </div>
                 </div>
@@ -433,8 +200,8 @@
                                     <img src="{% static 'assets/img/heading-logo.png' %}" class="img-fluid m-0" alt="img">
                                 </div>
                                 <div>
-                                    <h2>Our Category</h2>
-                                    <p>Explore restaurants and cafes by your favorite cuisine</p>
+                                    <h2>Our Hotel Room Category</h2>
+                                    <p>Explore Hotel Rooms and cafes by your favorite Hotel Blue hotel</p>
                                 </div>
                             </div>
                         </div>
@@ -447,78 +214,23 @@
                         </div>
                     </div>
                     <div class="row">
+                        {% for category in category %}
                         <div class="col-lg-2 col-md-4 col-sm-6 aos" data-aos="fade-up">
                             <div class="our-category-box">
                                 <a href="javascript:void(0);">
                                     <div class="our-category-img">
-                                        <img src="{% static 'assets/img/latest/category-img-1.png' %}" class="img-fluid" alt="img">
+                                        <img src="{{category.catgory_image.url}}" class="img-fluid" alt="img">
                                     </div>
                                 </a>
                                 <div class="our-category-info">
-                                    <h5><a href="javascript:void(0);">Pizza</a></h5>
+                                    <h5><a href="javascript:void(0);">{{category.name}}</a></h5>
+                                    <h6>{{ category.available_rooms }} Rooms Available</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 aos" data-aos="fade-up">
-                            <div class="our-category-box">
-                                <a href="javascript:void(0);">
-                                    <div class="our-category-img">
-                                        <img src="{% static 'assets/img/latest/category-img-2.png' %}" class="img-fluid" alt="img">
-                                    </div>
-                                </a>
-                                <div class="our-category-info">
-                                    <h5><a href="javascript:void(0);">Broast</a></h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 aos" data-aos="fade-up">
-                            <div class="our-category-box">
-                                <a href="javascript:void(0);">
-                                    <div class="our-category-img">
-                                        <img src="{% static 'assets/img/latest/category-img-3.png' %}" class="img-fluid" alt="img">
-                                    </div>
-                                </a>
-                                <div class="our-category-info">
-                                    <h5><a href="javascript:void(0);">Chicken</a></h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 aos" data-aos="fade-up">
-                            <div class="our-category-box">
-                                <a href="javascript:void(0);">
-                                    <div class="our-category-img">
-                                        <img src="{% static 'assets/img/latest/category-img-4.png' %}" class="img-fluid" alt="img">
-                                    </div>
-                                </a>
-                                <div class="our-category-info">
-                                    <h5><a href="javascript:void(0);">Burgers</a></h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 aos" data-aos="fade-up">
-                            <div class="our-category-box">
-                                <a href="javascript:void(0);">
-                                    <div class="our-category-img">
-                                        <img src="{% static 'assets/img/latest/category-img-5.png' %}" class="img-fluid" alt="img">
-                                    </div>
-                                </a>
-                                <div class="our-category-info">
-                                    <h5><a href="javascript:void(0);">Sandwiches</a></h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 aos" data-aos="fade-up">
-                            <div class="our-category-box">
-                                <a href="javascript:void(0);">
-                                    <div class="our-category-img">
-                                        <img src="{% static 'assets/img/latest/category-img-6.png' %}" class="img-fluid" alt="img">
-                                    </div>
-                                </a>
-                                <div class="our-category-info">
-                                    <h5><a href="javascript:void(0);">Shakes</a></h5>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+
+                        
                     </div>
                 </div>
             </div>
@@ -536,20 +248,21 @@
                     <div class="row">
                         <div class="col-md-12 aos aos-init aos-animate" data-aos="fade-up">
                             <img src="{% static 'assets/img/heading-logo-small.png' %}" class="img-fluid" alt="title-img">
-                            <h2>Popular Hotels</h2>
+                            <h2>Popular Hotels Room</h2>
                             <p>What are you interested near you.</p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
+                    {% for room in hotel_room %}
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="dishes-box aos" data-aos="fade-up">
                             <div class="dishes-img">
                                 <a href="#">
-                                    <img src="{% static 'assets/img/latest/Restaurant-1.jpg' %}" class="img-fluid" alt="img">
+                                    <img src="{{room.hotel_images.url}}" class="img-fluid" alt="img">
                                 </a>
                                 <div class="feature-content justify-content-end">
-                                    <span class="featured-text">Featured</span>
+                                    <span class="featured-text">Available</span>
                                 </div>
                                 <div class="fav-item justify-content-end">
                                     <a href="javascript:void(0)" class="fav-icon">
@@ -561,7 +274,7 @@
                                 <div class="dishes-inner">
                                     <div class="author-img-new">
                                         <div class="inner-img">
-                                            <img src="{% static 'assets/img/profiles/avatar-06.jpg' %}" class="img-fluid" alt="img">
+                                            <img src="{{ room.hotel_images.url }}" class="img-fluid" alt="img">
                                         </div>
                                     </div>
                                     <p class="title">USA</p>
@@ -584,132 +297,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="dishes-box aos" data-aos="fade-up">
-                            <div class="dishes-img">
-                                <a href="#">
-                                    <img src="{% static 'assets/img/latest/Restaurant-2.jpg' %}" class="img-fluid" alt="img">
-                                </a>
-                                <div class="feature-content justify-content-end">
-                                    <span class="featured-text">Featured</span>
-                                </div>
-                                <div class="fav-item justify-content-end">
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="dishes-content">
-                                <div class="dishes-inner">
-                                    <div class="author-img-new">
-                                        <div class="inner-img">
-                                            <img src="{% static 'assets/img/profiles/avatar-07.jpg' %}" class="img-fluid" alt="img">
-                                        </div>
-                                    </div>
-                                    <p class="title">Europe</p>
-                                    <h5><a href="javascript:void(0);"> Casual dining <i class="fa-solid fa-circle-check"></i></a></h5>
-                                    <div class="dishes-review">
-                                        <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                        <h6 class="review-color">4.5<i class="fa-solid fa-star review-color"></i>
-                                            <span class="img-fluid">10(Reviews)</span>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="dishes-footer">
-                                    <div class="landmark">
-                                        <h5><i class="feather-map-pin"></i> United States</h5>
-                                    </div>
-                                    <div class="amount">
-                                        <h5>$300 <span>/ hour</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="dishes-box aos" data-aos="fade-up">
-                            <div class="dishes-img">
-                                <a href="#">
-                                    <img src="{% static 'assets/img/latest/Restaurant-3.jpg' %}" class="img-fluid" alt="img">
-                                </a>
-                                <div class="feature-content justify-content-end">
-                                    <span class="featured-text">Featured</span>
-                                </div>
-                                <div class="fav-item justify-content-end">
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="dishes-content">
-                                <div class="dishes-inner">
-                                    <div class="author-img-new">
-                                        <div class="inner-img">
-                                            <img src="{% static 'assets/img/profiles/avatar-08.jpg' %}" class="img-fluid" alt="img">
-                                        </div>
-                                    </div>
-                                    <p class="title">China</p>
-                                    <h5><a href="javascript:void(0);"> Family-style dining <i class="fa-solid fa-circle-check"></i></a></h5>
-                                    <div class="dishes-review">
-                                        <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                        <h6 class="review-color">3.0<i class="fa-solid fa-star review-color"></i>
-                                            <span class="img-fluid">7.0(Reviews)</span>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="dishes-footer">
-                                    <div class="landmark">
-                                        <h5><i class="feather-map-pin"></i> China</h5>
-                                    </div>
-                                    <div class="amount">
-                                        <h5>$250 <span>/ hour</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="dishes-box aos" data-aos="fade-up">
-                            <div class="dishes-img">
-                                <a href="#">
-                                    <img src="{% static 'assets/img/latest/Restaurant-4.jpg' %}" class="img-fluid" alt="img">
-                                </a>
-                                <div class="feature-content justify-content-end">
-                                    <span class="featured-text">Featured</span>
-                                </div>
-                                <div class="fav-item justify-content-end">
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="dishes-content">
-                                <div class="dishes-inner">
-                                    <div class="author-img-new">
-                                        <div class="inner-img">
-                                            <img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" class="img-fluid" alt="img">
-                                        </div>
-                                    </div>
-                                    <p class="title">England</p>
-                                    <h5><a href="javascript:void(0)"> Fast-casual dining <i class="fa-solid fa-circle-check"></i></a></h5>
-                                    <div class="dishes-review">
-                                        <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                        <h6 class="review-color">2.5<i class="fa-solid fa-star review-color"></i>
-                                            <span class="img-fluid">5.0(Reviews)</span>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="dishes-footer">
-                                    <div class="landmark">
-                                        <h5><i class="feather-map-pin"></i> Denmark</h5>
-                                    </div>
-                                    <div class="amount">
-                                        <h5>$300 <span>/ hour</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                   
                 </div>
             </div>
         </section>
@@ -920,7 +509,7 @@
                                     <img src="{% static 'assets/img/heading-logo.png' %}" class="img-fluid m-0" alt="img">
                                 </div>
                                 <div>
-                                    <h2>Latest Restaurant</h2>
+                                    <h2>Latest Hotel Room</h2>
                                     <p>What are you interested near you.</p>
                                 </div>
                             </div>
