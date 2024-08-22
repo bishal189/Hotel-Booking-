@@ -277,21 +277,21 @@
                                             <img src="{{ room.hotel_images.url }}" class="img-fluid" alt="img">
                                         </div>
                                     </div>
-                                    <p class="title">USA</p>
-                                    <h5><a href="javascript:void(0);"> Fine dining <i class="fa-solid fa-circle-check"></i></a></h5>
+                                    <p class="title">Cyrpus</p>
+                                    <h5><a href="javascript:void(0);">{{room.room_number}} &nbsp <i class="fa-solid fa-circle-check"></i></a></h5>
                                     <div class="dishes-review">
                                         <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                        <h6 class="review-color">4.0<i class="fa-solid fa-star review-color"></i>
-                                            <span class="img-fluid">8.5(Reviews)</span>
-                                        </h6>
+                                        <h6>{{room.room_type}}</h6>
+                                         
+                                       
                                     </div>
                                 </div>
                                 <div class="dishes-footer">
                                     <div class="landmark">
-                                        <h5><i class="feather-map-pin"></i> Europe</h5>
+                                        <h5>Capacity : {{room.capacity}}</h5>
                                     </div>
                                     <div class="amount">
-                                        <h5>$400 <span>/ hour</span></h5>
+                                        <h5>${{room.price_per_night}} <span>/ per night</span></h5>
                                     </div>
                                 </div>
                             </div>
@@ -516,14 +516,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
+
+                        {% for room in hotel_room %}
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="dishes-box aos" data-aos="fade-up">
                                 <div class="dishes-img">
                                     <a href="#">
-                                        <img src="{% static 'assets/img/latest/latest-restaurant-1.jpg' %}" class="img-fluid" alt="img">
+                                        <img src="{{room.hotel_images.url}}" class="img-fluid" alt="img">
                                     </a>
                                     <div class="feature-content justify-content-end">
-                                        <span class="featured-text">Featured</span>
+                                        <span class="featured-text">Available</span>
                                     </div>
                                     <div class="fav-item justify-content-end">
                                         <a href="javascript:void(0)" class="fav-icon">
@@ -535,155 +537,31 @@
                                     <div class="dishes-inner">
                                         <div class="author-img-new">
                                             <div class="inner-img">
-                                                <img src="{% static 'assets/img/profiles/avatar-01.jpg' %}" class="img-fluid" alt="img">
+                                                <img src="{{ room.hotel_images.url }}" class="img-fluid" alt="img">
                                             </div>
                                         </div>
-                                        <p class="title">China</p>
-                                        <h5><a href="javascript:void(0);"> Fast-casual dining <i class="fa-solid fa-circle-check"></i></a></h5>
+                                        <p class="title">Cyrpus</p>
+                                        <h5><a href="javascript:void(0);">{{room.room_number}} &nbsp <i class="fa-solid fa-circle-check"></i></a></h5>
                                         <div class="dishes-review">
                                             <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                            <h6 class="review-color">5.0<i class="fa-solid fa-star review-color"></i>
-                                                <span class="img-fluid">10(Reviews)</span>
-                                            </h6>
+                                            <h6>{{room.room_type}}</h6>
+                                             
+                                           
                                         </div>
                                     </div>
                                     <div class="dishes-footer">
                                         <div class="landmark">
-                                            <h5><i class="feather-map-pin"></i> United States</h5>
+                                            <h5>Capacity : {{room.capacity}}</h5>
                                         </div>
                                         <div class="amount">
-                                            <h5>$300<span>/ hour</span></h5>
+                                            <h5>${{room.price_per_night}} <span>/ per night</span></h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="dishes-box aos" data-aos="fade-up">
-                                <div class="dishes-img">
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/latest/latest-restaurant-2.jpg' %}" class="img-fluid" alt="img">
-                                    </a>
-                                    <div class="feature-content justify-content-end">
-                                        <span class="featured-text">Featured</span>
-                                    </div>
-                                    <div class="fav-item justify-content-end">
-                                        <a href="javascript:void(0)" class="fav-icon">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="dishes-content">
-                                    <div class="dishes-inner">
-                                        <div class="author-img-new">
-                                            <div class="inner-img">
-                                                <img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" class="img-fluid" alt="img">
-                                            </div>
-                                        </div>
-                                        <p class="title">Japan</p>
-                                        <h5><a href="javascript:void(0);"> Family-style dining <i class="fa-solid fa-circle-check"></i></a></h5>
-                                        <div class="dishes-review">
-                                            <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                            <h6 class="review-color">5.0<i class="fa-solid fa-star review-color"></i>
-                                                <span class="img-fluid">10(Reviews)</span>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="dishes-footer">
-                                        <div class="landmark">
-                                            <h5><i class="feather-map-pin"></i> Tokyo</h5>
-                                        </div>
-                                        <div class="amount">
-                                            <h5>$200<span>/ hour</span></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="dishes-box aos" data-aos="fade-up">
-                                <div class="dishes-img">
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/latest/latest-restaurant-3.jpg' %}" class="img-fluid" alt="img">
-                                    </a>
-                                    <div class="feature-content justify-content-end">
-                                        <span class="featured-text">Featured</span>
-                                    </div>
-                                    <div class="fav-item justify-content-end">
-                                        <a href="javascript:void(0)" class="fav-icon">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="dishes-content">
-                                    <div class="dishes-inner">
-                                        <div class="author-img-new">
-                                            <div class="inner-img">
-                                                <img src="{% static 'assets/img/profiles/avatar-03.jpg' %}" class="img-fluid" alt="img">
-                                            </div>
-                                        </div>
-                                        <p class="title">England</p>
-                                        <h5><a href="javascript:void(0);"> Fine dining <i class="fa-solid fa-circle-check"></i></a></h5>
-                                        <div class="dishes-review">
-                                            <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                            <h6 class="review-color">3.0<i class="fa-solid fa-star review-color"></i>
-                                                <span class="img-fluid">8(Reviews)</span>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="dishes-footer">
-                                        <div class="landmark">
-                                            <h5><i class="feather-map-pin"></i> Germany</h5>
-                                        </div>
-                                        <div class="amount">
-                                            <h5>$300<span>/ hour</span></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="dishes-box aos" data-aos="fade-up">
-                                <div class="dishes-img">
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/latest/latest-restaurant-4.jpg' %}" class="img-fluid" alt="img">
-                                    </a>
-                                    <div class="feature-content justify-content-end">
-                                        <span class="featured-text">Featured</span>
-                                    </div>
-                                    <div class="fav-item justify-content-end">
-                                        <a href="javascript:void(0)" class="fav-icon">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="dishes-content">
-                                    <div class="dishes-inner">
-                                        <div class="author-img-new">
-                                            <div class="inner-img">
-                                                <img src="{% static 'assets/img/profiles/avatar-05.jpg' %}" class="img-fluid" alt="no-img">
-                                            </div>
-                                        </div>
-                                        <p class="title">Australia</p>
-                                        <h5><a href="javascript:void(0);"> Casual dining <i class="fa-solid fa-circle-check"></i></a></h5>
-                                        <div class="dishes-review">
-                                            <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                            <h6 class="review-color">4.0<i class="fa-solid fa-star review-color"></i>
-                                                <span>9(Reviews)</span>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="dishes-footer">
-                                        <div class="landmark">
-                                            <h5><i class="feather-map-pin"></i> China</h5>
-                                        </div>
-                                        <div class="amount">
-                                            <h5>$250<span>/ hour</span></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+                      
                     </div>
                 </div>
             </div>
@@ -694,134 +572,6 @@
 		
 
 
-        <section class="pricing-plan pricing-plan-seven">
-            <div class="container">
-                <div class="section-heading-two section-heading-seven text-center">
-                    <div class="row">
-                        <div class="col-md-12 aos aos-init aos-animate" data-aos="fade-up">
-                            <img src="{% static 'assets/img/heading-logo-small.png' %}" class="img-fluid" alt="title-img">
-                            <h2>Our Pricing Plan</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="price-wrap">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 d-flex aos" data-aos="fade-up">
-                            <div class="price-card price-seven flex-fill">
-                                <div>
-                                    <div class="price-head">
-                                        <h4>$10 <span>/ month</span></h4>
-                                        <div class="price-level">
-                                            <h6>Intro</h6>
-                                        </div>
-                                    </div>
-                                    <div class="price-body">
-                                        <p>For most businesses that want to optimize web queries</p>
-                                        <ul>
-                                            <li class="active">Chat support</li>
-                                            <li class="active">All limited links</li>
-                                            <li class="active">Own analytics platform</li>
-                                            <li class="active">Optimize hashtags</li>
-                                            <li class="active">Unlimited users</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="choose-btn">
-                                    <a href="login.html" class="btn viewdetails-btn">Choose Plan
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 d-flex aos" data-aos="fade-up">
-                            <div class="price-card price-seven flex-fill">
-                                <div>
-                                    <div class="price-head">
-                                        <h4>$50 <span>/ month</span></h4>
-                                        <div class="price-level">
-                                            <h6>Base</h6>
-                                        </div>
-                                    </div>
-                                    <div class="price-body">
-                                        <p>For most businesses that want to optimize web queries</p>
-                                        <ul>
-                                            <li class="active">Chat support</li>
-                                            <li class="active">All limited links</li>
-                                            <li class="active">Own analytics platform</li>
-                                            <li class="active">Optimize hashtags</li>
-                                            <li class="active">Unlimited users</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="choose-btn">
-                                    <a href="login.html" class="btn viewdetails-btn">Choose Plan
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 aos" data-aos="fade-up">
-                            <div class="price-card price-seven active flex-fill">
-                                <div>
-                                    <div class="price-head">
-                                        <div class="text-end pop">
-                                            <span class="feature">MOST POPULAR</span>
-                                        </div>
-                                        <h4>$100 <span>/ month</span></h4>
-                                        <div class="price-level">
-                                            <h6>Pro</h6>
-                                        </div>
-                                    </div>
-                                    <div class="price-body">
-                                        <p>For most businesses that want to optimize web queries</p>
-                                        <ul>
-                                            <li class="active">Chat support</li>
-                                            <li class="active">All limited links</li>
-                                            <li class="active">Own analytics platform</li>
-                                            <li class="active">Optimize hashtags</li>
-                                            <li class="active">Unlimited users</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="choose-btn">
-                                    <a href="login.html" class="btn viewdetails-btn">Choose Plan
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 d-flex aos" data-aos="fade-up">
-                            <div class="price-card price-seven flex-fill">
-                                <div>
-                                    <div class="price-head">
-                                        <h4>$200 <span>/ month</span></h4>
-                                        <div class="price-level">
-                                            <h6>Enterprise</h6>
-                                        </div>
-                                    </div>
-                                    <div class="price-body">
-                                        <p>For most businesses that want to optimize web queries</p>
-                                        <ul>
-                                            <li class="active">Chat support</li>
-                                            <li class="active">All limited links</li>
-                                            <li class="active">Own analytics platform</li>
-                                            <li class="active">Optimize hashtags</li>
-                                            <li class="active">Unlimited users</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="choose-btn">
-                                    <a href="login.html" class="btn viewdetails-btn">Choose Plan
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
 		<!-- /Pricing-Two  Plan -->
 
