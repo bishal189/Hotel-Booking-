@@ -179,9 +179,15 @@
                 </li>
             </ul>
             <ul class="nav header-navbar-rht nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link header-login" href="{% url 'logout' %}"><span><i class="fa-solid fa-plus"></i></span>Log Out</a>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link header-login" href="{% url 'login' %}"><span><i class="fa-solid fa-plus"></i></span>Sign In</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link header-login" href="{% url 'register' %}"><span><i class="fa-solid fa-plus"></i></span>Sign Up </a>
                 </li>

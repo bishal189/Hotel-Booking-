@@ -43,17 +43,18 @@
 							</div>
 							
 							<!-- Login Form -->
-							<form action="dashboard.html">
+							<form action="{% url 'login' %}" method='POST' >
+								{% csrf_token %}
 								<div class="form-group group-img">
 								    <div class="group-img">
 										<i class="feather-mail"></i>
-										<input type="text" class="form-control" placeholder="Email Address">
+										<input type="text" class="form-control" placeholder="Email Address" name='email'>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="pass-group group-img">
 									    <i class="feather-lock"></i>
-										<input type="password" class="form-control pass-input" placeholder="Password">
+										<input type="password" class="form-control pass-input" placeholder="Password" name='password'>
 										<span class="toggle-password feather-eye"></span>
 									</div>
 								</div>
@@ -66,13 +67,13 @@
 									</div>									
 									<div class="col-md-6 col-sm-6">
 										<div class="text-md-end">
-											<a class="forgot-link" href="forgot-password.html">Forgot password?</a>
+											<a class="forgot-link" href="{% url 'forget_password' %}">Forgot password?</a>
 										</div>
 									</div>									
 								</div>
 								<button class="btn btn-primary w-100 login-btn" type="submit">Sign in</button>
 								<div class="register-link text-center">
-									<p>No account yet? <a class="forgot-link" href="signup.html">Signup</a></p>
+									<p>No account yet? <a class="forgot-link" href="{% url 'register' %}">Signup</a></p>
 								</div>
 								<div class="login-or">
 									<span class="or-line"></span>
