@@ -67,4 +67,8 @@ def booking_forms(request,id):
 
 
 def dashboard(request):
-    return render(request,'home/dashboard.html')    
+    booking=Booking.objects.filter(guest=request.user)
+    context={
+        'book':booking
+    }
+    return render(request,'home/dashboard.html',context)    

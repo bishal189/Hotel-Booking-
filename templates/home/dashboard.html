@@ -30,62 +30,40 @@
 									    <th class="no-sort" >Image</th>										 
 									    <th class="no-sort">Details</th>										 
 									    <th>Status</th>										 
-									    <th class="no-sort">Views</th>										 
+									  									 
 									    <th class="no-sort">Action</th>										 
 									 </tr>	
                                      </thead>
-                                     <tbody>									 
+                                     <tbody>
+                                    {% for item in book %}									 
                                      <tr>
 									     <td>
-										    <div class="listingtable-img"> <a href="service-details.html"><img class="img-fluid avatar-img" src="assets/img/list/tablelist-1.jpg" alt=""></a></div>
+										    <div class="listingtable-img"> <a href="service-details.html"><img class="img-fluid avatar-img" src="{{item.room.hotel_images.url}}" alt=""></a></div>
 										 </td>
 									     <td>
-										     <h6><a href="service-details.html">Villa 457 sq.m. In Benidorm Fully Qquipped House</a></h6>
-										     <div class="listingtable-rate"><a href="javascript:void(0)" class="cat-icon"><i class="fa-regular fa-circle-stop"></i> Electronics</a> <span class="discount-amt">$350000.00</span><span class="fixed-amt">$40000</span></div>
-										     <p>Mauris vestibulum lorem a condimentum vulputate.</p>
+										     <h6><a href="service-details.html">{{item.room.room_number}}</a></h6>
+										     <h6><a href="service-details.html">{{item.room.room_type}}</a></h6>
+										     <div class="listingtable-rate"><a href="javascript:void(0)" class="cat-icon"><i class="fa-regular fa-circle-stop"></i> {{item.room.category.name}}</a> <span class="fixed-amt">€{{item.room.price_per_night}}</span></div>
+					
 										 </td>
-									     <td><span class="status-text">Published</span></td>
-									     <td><Span class="views-count">1523</span></td>
+									     <td><span class="status-text">Booked</span></td>
+									     
 									     <td>
 										    <div class="action">
         										<a href="javascript:void(0)" class="action-btn btn-view"><i class="feather-eye"></i></a>
-											    <a href="javascript:void(0)" class="action-btn btn-edit"><i class="feather-edit-3"></i></a>
-											    <a href="javascript:void(0)" class="action-btn btn-trash"><i class="feather-trash-2"></i></a>
+                                                <a href="javascript:void(0)" class="action-btn btn-trash"><i class="feather-trash-2"></i></a>
+									
+											   
 											
 										    </div>
 										 </td>
                                      </tr> 
+                                     {% endfor %}
                                      
                                      </tbody>									 
 							    </table>				
 							</div>
-                            <div class="blog-pagination">
-								<nav>
-									<ul class="pagination">
-										<li class="page-item previtem">
-											<a class="page-link" href="#"><i class="fas fa-regular fa-arrow-left"></i> Prev</a>
-								    	</li>
-										<li class="justify-content-center pagination-center"> 
-											<div class="pagelink">
-												<ul>
-													<li class="page-item">
-														<a class="page-link" href="#">1</a>
-													</li>
-													<li class="page-item active">
-														<a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
-													</li>
-													<li class="page-item">
-														<a class="page-link" href="#">3</a>
-												   </li>
-											   </ul>
-											</div>													
-										</li>													
-										<li class="page-item nextlink">
-											<a class="page-link" href="#">Next <i class="fas fa-regular fa-arrow-right"></i></a>
-										</li>
-									</ul>
-								</nav>
-							</div>										
+                           									
 					    </div>							
 					</div>                  							
 				</div>							
