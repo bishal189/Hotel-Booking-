@@ -17,3 +17,8 @@ admin.site.register(Category,categoryAdmin)
 class AmenityAdmin(admin.ModelAdmin):
     list_display=['name',]
 admin.site.register(Amenity,AmenityAdmin)
+
+
+class bookingAdmin(admin.ModelAdmin):
+    list_display=['guest_name','check_in_date','check_out_date','guest_email','guest_phone']
+admin.site.register(Booking,bookingAdmin)

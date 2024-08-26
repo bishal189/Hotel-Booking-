@@ -1,6 +1,7 @@
 
 
 from django.db import models
+from auths.models import Account
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     catgory_image=models.FileField(upload_to='category_image',blank=True,null=True)
@@ -53,3 +54,18 @@ class HotelRoom(models.Model):
         """Update the price per night of the room."""
         self.price_per_night = new_price
         self.save()
+
+
+class Booking(models.Model):
+    room = models.ForeignKey(HotelRoom, on_delete=models.CASCADE)
+    guest = models.ForeignKey(Account, on_delete=models.CASCADE) 
+    check_in_date = models.DateField()
+    check_out_date = models.DateField()
+    guest_name = models.CharField(max_length=100)
+    guest_email = models.EmailField()
+    guest_phone = models.CharField(max_length=15, blank=True, null=True)
+    special_requests = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Booking for {self.guest_name} in Room {self.room.room_number}'

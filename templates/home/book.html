@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="main-wrapper innerpagebg">
+	
+    <!-- Header -->
+    <header class="header">
+       {% include 'includes/header1.html' %}
+    </header>
+    <!-- /Header -->
+    
+ 
+    
+    <div class="list-content" >
+        <div class="container">
+
+            <div class="row" style="margin-top:36px;">
+                <div class="contact-info">
+                    <h2>Book <span>Us</span></h2> 
+                    <p>We are here to serve you</p>
+                </div>	
+               
+              
+               
+                  
+                    <div class="blog-listview">
+                       
+                        <div class="card">
+                            <div class="blog-widget">
+                                <div class="blog-img">
+                                    <a href="service-details.html">
+                                     <img src="{{room.hotel_images.url}}" class="img-fluid" alt="blog-img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <span class="featured-text">Featured</span>
+                                        <a href="javascript:void(0)" class="fav-icon">
+                                            <i class="feather-heart"></i>
+                                        </a>										
+                                    </div>															    
+                                </div>
+                                <div class="bloglist-content">
+                                    <div class="card-body">
+                                     
+                                        <h6><a href="service-details.html">Room No: {{ room.room_number }}</a></h6>
+                                      
+                                      
+                                        <div class="blog-location-details">
+                                            <div class="location-info">
+                                                <i class="feather-map-pin"></i> Cyrpus
+                                            </div>
+                                            <div class="location-info">
+                                                <i class="feather-phone-call"></i> +44 6633 6526
+                                            </div>
+                                            <div class="location-info">
+                                                <i class="feather-eye"></i> 4000
+                                            </div>
+                                        </div>
+                                        <div class="ratings" style="display:flex; justify-content:space-between;">
+                                            <div>
+                                                Capacity : {{ room.capacity }}
+                                            </div>
+                                            <div>
+                                                <i class="fa-regular fa-clock"></i> Open
+                                            </div>
+                                            <div>
+                                                {{ room.category.name }}
+                                            </div>
+                                        </div>
+                                        <div class="amount-details">
+                                            <div class="amount">
+                                                <span class="validrate">€{{ room.price_per_night|floatformat:0 }} per night</span>
+                                                <span>$450</span>
+                                            </div>
+                                            <a href="service-details.html">View details</a>
+                                            <!-- Book Now Button -->
+                                            
+                                        </div>
+                                        <a href="{% url 'booking_forms' room.id %}" class="btn btn-primary" style="margin-top: 10px;">More Now</a>
+
+                                    </div>
+                                </div>
+                                
+                            </div> 
+                        </div>
+                    </div>    
+            </div>
+         </div>			  
+    </div>
+    
+  
+    <!--contact Form-->	
+    <section class="contactusform-section">
+           <div class="container">	
+                <div class="contact-info">
+                   <h2>Fill Up the form With <span>Us</span></h2> 
+                   <p>We are here to serve you</p>
+               </div>		       
+               <div class="row align-items-center">
+                    <div class="col-lg-5 col-md-5">
+                        <div class="contactform-img">
+                             <img src="{% static 'assets/download.jpeg'%} " class="img-fluid"  alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        
+                        <div class="contactus-form">
+                            <form class="" action='{% url "booking_forms" id %}' method='POST'>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                   <input type="text" class="form-control" placeholder="Name*" required name='name'>
+                                </div>
+                                <div class="form-group me-0">
+                                   <input type="email" class="form-control" placeholder="Email*" required name='email'>
+                                </div>
+                                <div class="form-group me-0">
+                                   <input type="phone" class="form-control" placeholder="phone*" required name='phone_no' required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkin_date">Check-in Date</label>
+                                    <input type="date" id="checkin_date" name="checkin_date" class="form-control checkin-checkout"  required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="checkout_date">Check-out Date</label>
+                                    <input type="date" id="checkout_date" name="checkout_date" class="form-control checkin-checkout" required>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                       <textarea rows="4" class="form-control" name='write_message' placeholder="Write a Message*" required></textarea>
+                                </div>
+                                <div class="submit-section">
+                                    <button class="btn btn-primary submit-btn" type="submit"> Book </button>
+                                </div>
+                            </form>
+                        
+                        </div>
+                    </div>
+               </div>				   
+           </div>		
+    </section>		
+    <!--/contact Form-->
+   
+        
+  	
+   			
+    
+    
+    <!-- Footer -->
+   {% include 'includes/footer.html' %}
+    <!-- /Footer -->
+    
+</div>
+
+<!-- scrollToTop start -->
+<div class="progress-wrap active-progress">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+    <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
+    </svg>
+</div>
+<!-- scrollToTop end -->
+
+{% endblock %}

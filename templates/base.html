@@ -32,6 +32,96 @@
 
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+	<style>
+		/* Styling specific to Check-in and Check-out date fields */
+#checkin_date.form-control,
+#checkout_date.form-control {
+    position: relative;
+    padding-right: 40px;
+    background-color: #f8f9fa;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Customizing the date picker icon */
+#checkin_date.form-control::-webkit-calendar-picker-indicator,
+#checkout_date.form-control::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    opacity: 0.7;
+}
+
+/* Hover effect on date picker icon */
+#checkin_date.form-control::-webkit-calendar-picker-indicator:hover,
+#checkout_date.form-control::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* Focus state */
+#checkin_date.form-control:focus,
+#checkout_date.form-control:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+	</style>
+
+
+
+
+	<style>
+		
+		.main-section p,
+		.mce-content-body p {
+			font: Normal 14px/24px "Open Sans", sans-serif;
+			letter-spacing: 0px;
+			text-transform: none;
+			color: #515151 !important;
+		}
+
+		@keyframes show {
+			0% {
+				bottom: -100%;
+			}
+
+			20% {
+				bottom: 100px;
+			}
+
+			80% {
+				bottom: 100px;
+			}
+
+			100% {
+				bottom: -100%;
+			}
+
+		}
+
+		.notification {
+			position: fixed;
+			bottom: 100%;
+			right: 20px;
+			animation-name: show;
+			animation-duration: 7s;
+			z-index: 99;
+
+
+		}
+		@media (max-width:363px){
+			.ml-5{
+				margin-left: 0px !important;
+			}
+		}
+		
+	</style>
 </head>
 
 <body>
