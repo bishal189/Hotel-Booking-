@@ -189,119 +189,90 @@
 		
 
 
-
-        <section class="our-category-section our-category-section-seven">
-            <div class="container">
-                <div class="restaurants-sec">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="section-heading section-heading-seven d-flex align-items-center aos" data-aos="fade-up">
-                                <div class="heading-img">
-                                    <img src="{% static 'assets/img/heading-logo.png' %}" class="img-fluid m-0" alt="img">
-                                </div>
-                                <div>
-                                    <h2>Our Hotel Room Category</h2>
-                                    <p>Explore Hotel Rooms and cafes by your favorite Hotel Blue hotel</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-md-end aos" data-aos="fade-up">
-                            <div class="interset-btn">
-                                <a href="service-details.html" class="btn btn-primary more-btn more-btn-two">View All
-                                    <i class="feather-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        {% for category in category %}
-                        <div class="col-lg-2 col-md-4 col-sm-6 aos" data-aos="fade-up">
-                            <div class="our-category-box">
-                                <a href="javascript:void(0);">
-                                    <div class="our-category-img">
-                                        <img src="{{category.catgory_image.url}}" class="img-fluid" alt="img">
-                                    </div>
-                                </a>
-                                <div class="our-category-info">
-                                    <h5><a href="javascript:void(0);">{{category.name}}</a></h5>
-                                    <h6>{{ category.available_rooms }} Rooms Available</h6>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-
 		<!-- /Our-Category Section -->
 
 		<!-- Restaurant Section -->
 	
 
         
-        <section class="restaurant-section restaurant-section-seven">
-            <div class="container">
-                <div class="section-heading-two section-heading-seven text-center">
-                    <div class="row">
-                        <div class="col-md-12 aos aos-init aos-animate" data-aos="fade-up">
-                            <img src="{% static 'assets/img/heading-logo-small.png' %}" class="img-fluid" alt="title-img">
-                            <h2>Popular Hotels Room</h2>
-                            <p>What are you interested near you.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    {% for room in hotel_room %}
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="dishes-box aos" data-aos="fade-up">
-                            <div class="dishes-img">
-                                <a href="#">
-                                    <img src="{{room.hotel_images.url}}" class="img-fluid" alt="img">
-                                </a>
-                                <div class="feature-content justify-content-end">
-                                    <span class="featured-text">Available</span>
+        <section class="latestad-section grid-view featured-slider">	
+            <div class="container">		
+                    <div class="section-heading">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 aos aos-init aos-animate" data-aos="fade-up">
+                                        <h2>Lat<span class="title-right">est</span> Room</h2>
+                                        <p>checkout these latest cool ads from our members</p>
                                 </div>
-                                <div class="fav-item justify-content-end">
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                    </a>
-                                </div>
+                                <div class="col-md-6 text-md-end aos aos-init aos-animate" data-aos="fade-up">
+                                    <a href="service-details.html" class="btn  btn-view">View All</a>
+                                </div>		
                             </div>
-                            <div class="dishes-content">
-                                <div class="dishes-inner">
-                                    <div class="author-img-new">
-                                        <div class="inner-img">
-                                            <img src="{{ room.hotel_images.url }}" class="img-fluid" alt="img">
+                    </div>
+                    <div class="lateestads-content">
+                        <div class="row">
+                            {% for room in hotel_room %}
+                            <div class="col-lg-3 col-md-4 col-sm-6 d-flex">
+                                <div class="card aos flex-fill" data-aos="fade-up">
+                                    <div class="blog-widget">
+                                        <div class="blog-img">
+                                            <a href="service-details.html">
+                                                <img src="{{room.hotel_images.url}}" class="img-fluid" alt="blog-img">
+                                            </a>
+                                            <div class="fav-item">
+                                                <span class="featured-text">Featured</span>
+                                                <a href="javascript:void(0)" class="fav-icon">
+                                                    <i class="feather-heart"></i>
+                                                </a>										
+                                            </div>	
                                         </div>
-                                    </div>
-                                    <p class="title">Cyrpus</p>
-                                    <h5><a href="javascript:void(0);">{{room.room_number}} &nbsp <i class="fa-solid fa-circle-check"></i></a></h5>
-                                    <div class="dishes-review">
-                                        <h6><i class="fa-regular fa-clock"></i>Open</h6>
-                                        <h6>{{room.room_type}}</h6>
-                                         
-                                       
-                                    </div>
-                                </div>
-                                <div class="dishes-footer">
-                                    <div class="landmark">
-                                        <h5>Capacity : {{room.capacity}}</h5>
-                                    </div>
-                                    <div class="amount">
-                                        <h5>${{room.price_per_night}} <span>/ per night</span></h5>
-                                    </div>
+                                        <div class="bloglist-content">
+                                            <div class="card-body">
+                                                <div class="blogfeaturelink">
+                                                    <div class="grid-author">
+                                                         {% comment %} <img  src="assets/img/profiles/avatar-02.jpg" alt="author"> {% endcomment %}
+                                                    </div>														
+                                                    <div class="blog-features">
+                                                       <a href="javascript:void(0)"><span>  <i class="fa-regular fa-circle-stop"></i> Education</span></a>
+                                                    </div>																	  
+                                                    <div class="blog-author text-end"> 
+                                                        <span>  <i class="feather-eye"></i> 4000  </span>
+                                                    </div>
+                                                </div> 
+                                                <h6><a href="service-details.html">{{room.room_number}}</a></h6>
+                                                <div class="blog-location-details">
+                                                    <div class="location-info">
+                                                        <i class="feather-map-pin"></i>Cyrpus
+                                                        &nbsp
+                                                        <i class="fa-regular fa-clock"></i>Open
+                                                    </div>
+                                                    <div class="location-info">
+                                                        <i class="fa-regular fa-calendar-days"></i>{{room.room_type}}
+                                                    </div>
+                                                </div>																	 
+                                                
+                                                <div class="amount-details">
+                                                    <div class="amount">
+                                                        <span class="validrate">${{room.price_per_night}}</span>
+                                                        <span>$450</span>
+                                                    </div>
+                                                    
+                                                        <div class="ratings">
+                                                            Capacity : {{hotelroom.capacity}}
+                                                         </div>
+                                                    														
+                                                </div>	
+                                            </div>	
+                                        </div>			 
+                                    </div> 
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                   
-                </div>
+                            {% endfor %}
+                           
+                            
+                        </div>						
+                    </div>						
             </div>
-        </section>
+    </section>	
 
 		<!-- /Restaurant Section -->
 
