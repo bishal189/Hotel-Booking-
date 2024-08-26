@@ -204,7 +204,7 @@
                                         <p>checkout these latest cool ads from our members</p>
                                 </div>
                                 <div class="col-md-6 text-md-end aos aos-init aos-animate" data-aos="fade-up">
-                                    <a href="service-details.html" class="btn  btn-view">View All</a>
+                                    <a href="{% url 'all_rooms' %}" class="btn  btn-view">View All</a>
                                 </div>		
                             </div>
                     </div>
@@ -232,7 +232,7 @@
                                                          {% comment %} <img  src="assets/img/profiles/avatar-02.jpg" alt="author"> {% endcomment %}
                                                     </div>														
                                                     <div class="blog-features">
-                                                       <a href="javascript:void(0)"><span>  <i class="fa-regular fa-circle-stop"></i> Education</span></a>
+                                                       <a href="javascript:void(0)"><span>  <i class="fa-regular fa-circle-stop"></i> {{room.category.name}}</span></a>
                                                     </div>																	  
                                                     <div class="blog-author text-end"> 
                                                         <span>  <i class="feather-eye"></i> 4000  </span>
