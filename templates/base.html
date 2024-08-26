@@ -32,6 +32,12 @@
 
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+	<!-- Toastr CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 	<style>
 		/* Styling specific to Check-in and Check-out date fields */
 #checkin_date.form-control,
@@ -136,6 +142,11 @@
 	</div>
 	<!-- scrollToTop end -->
     {% endblock %}
+	<div id="overlayer">
+        <span class="loader">
+        <span class="loader-inner"></span>
+        </span>
+    </div>
 
 <!-- jQuery -->
 <script src="{% static 'assets/js/jquery-3.7.0.min.js' %}"></script>

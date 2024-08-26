@@ -206,8 +206,12 @@
                                                 <!-- Book Now Button -->
                                                 
                                             </div>
-                                            <a href="{% url 'booking_forms' room.id %}" class="btn btn-primary" style="margin-top: 10px;">Book Now</a>
+											{%if room.is_booked %}
+                                            <a href="{% url 'booking_forms' room.id %}" class="btn btn-primary" style="margin-top: 10px; pointer-events: none; opacity: 0.5;" disabled>Already Booked</a>
+                                             {% else %}
+											 <a href="{% url 'booking_forms' room.id %}" class="btn btn-primary" style="margin-top: 10px;">Book Now</a>
 
+											 {% endif %}
                                         </div>
                                     </div>
                                     

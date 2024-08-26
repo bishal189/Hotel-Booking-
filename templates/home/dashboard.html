@@ -3,6 +3,7 @@
 {% block content %}
 	
 	<div class="main-wrapper innerpagebg">
+		{% include 'includes/alert.html' %}
 	
 		<!-- Header -->
 		<header class="header">
@@ -51,8 +52,11 @@
 									     <td>
 										    <div class="action">
         										<a href="javascript:void(0)" class="action-btn btn-view"><i class="feather-eye"></i></a>
-                                                <a href="javascript:void(0)" class="action-btn btn-trash"><i class="feather-trash-2"></i></a>
-									
+												<a href="{% url 'delete_booking' item.id %}" class="action-btn btn-trash" onclick="confirmDelete('Do you want to delete?')">
+													<i class="feather-trash-2"></i>
+												</a>
+												
+																			
 											   
 											
 										    </div>
@@ -85,6 +89,10 @@
 		</svg>
 	</div>
 	<!-- scrollToTop end -->
+	
+	
+	
+	
 	
 	
 	

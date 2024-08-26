@@ -2,6 +2,9 @@
 
 from django.db import models
 from auths.models import Account
+from datetime import timedelta
+from django.utils import timezone
+
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     catgory_image=models.FileField(upload_to='category_image',blank=True,null=True)
@@ -34,6 +37,7 @@ class HotelRoom(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='rooms')
     amenities = models.ManyToManyField(Amenity, related_name='rooms')
     hotel_images=models.FileField(upload_to='hotelroom')
+    is_booked=models.BooleanField(default=False)
 
     def __str__(self):
         return f'Room {self.room_number}'
@@ -66,6 +70,8 @@ class Booking(models.Model):
     guest_phone = models.CharField(max_length=15, blank=True, null=True)
     special_requests = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    payment_deadline = models.DateTimeField()  # New field for payment deadline
 
+   
     def __str__(self):
         return f'Booking for {self.guest_name} in Room {self.room.room_number}'
