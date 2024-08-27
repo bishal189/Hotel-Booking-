@@ -211,3 +211,9 @@ def contact(request):
 
 def privacy(requset):
     return render(requset,'company/privacy.html')
+
+
+
+
+def details(request):
+    return render(request,'home/details.html')

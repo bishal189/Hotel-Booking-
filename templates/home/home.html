@@ -128,7 +128,7 @@
                             <div class="card aos" data-aos="fade-up">
                                 <div class="blog-widget">
                                     <div class="blog-img">
-                                        <a href="service-details.html">
+                                        <a href="{% url 'details' %}">
                                             <img src="{{ hotelroom.hotel_images.url }}" class="img-fluid" alt="blog-img">
                                         </a>
                                         <div class="fav-item">
@@ -151,7 +151,7 @@
                                             </div>
                                           
 
-                                            <h6><a href="service-details.html">{{hotelroom.room_number}}</a></h6>
+                                            <h6><a href="{% url 'details' %}">{{hotelroom.room_number}}</a></h6>
                                             <div class="blog-location-details">
                                                 <div class="location-info">
                                                     <i class="feather-map-pin"></i>Cyrpus
@@ -216,7 +216,7 @@
                                 <div class="card aos flex-fill" data-aos="fade-up">
                                     <div class="blog-widget">
                                         <div class="blog-img">
-                                            <a href="service-details.html">
+                                            <a href="{% url 'details' %}">
                                                 <img src="{{room.hotel_images.url}}" class="img-fluid" alt="blog-img">
                                             </a>
                                             <div class="fav-item">
@@ -239,7 +239,7 @@
                                                         <span>  <i class="feather-eye"></i> 4000  </span>
                                                     </div>
                                                 </div> 
-                                                <h6><a href="service-details.html">{{room.room_number}}</a></h6>
+                                                <h6><a href="{% url 'details' %}">{{room.room_number}}</a></h6>
                                                 <div class="blog-location-details">
                                                     <div class="location-info">
                                                         <i class="feather-map-pin"></i>Cyrpus
