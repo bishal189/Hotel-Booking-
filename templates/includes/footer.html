@@ -145,19 +145,19 @@
                              <div class="col-lg-3 col-md-3">
                                 <div class="vistors-details">
                                     <p>Our Unique Visitor</p>
-                                    <p class="visitors-value">25,329,532</p>										
+                                    <p class="visitors-value">{{user_count}}</p>										
                                 </div>									 
                              </div>
                               <div class="col-lg-3 col-md-3">
                                   <div class="vistors-details">
                                     <p>Our Unique Visitor</p>
-                                    <p class="visitors-value">25,329,53264546</p>										
+                                    <p class="visitors-value">{{user_count}}</p>										
                                 </div>									 
                              </div> 
                              <div class="col-lg-3 col-md-3">
                                  <div class="vistors-details">
                                     <p>Our Unique Visitor</p>
-                                    <p class="visitors-value">25,329,53264546</p>										
+                                    <p class="visitors-value">{{user_count}}</p>										
                                 </div>									 
                              </div>
                               <div class="col-lg-3 col-md-3">
@@ -197,13 +197,16 @@
                         <div class="copyright-menu">
                             <ul class="policy-menu">
                                 <li>
-                                    <a href="privacy-policy.html">Privacy </a>
+                                    <a href="{% url 'privacy' %}">Privacy </a>
                                 </li>
                                 <li>
-                                    <a href="faq.html">Faq </a>
+                                    <a href="{% url 'faq' %}">Faq </a>
                                 </li>
                                 <li>
-                                    <a href="terms-condition.html">Terms</a>
+                                    <a href="{% url 'terms' %}">Terms</a>
+                                </li>										
+                                <li>
+                                    <a href="{% url 'about_us' %}">About Us</a>
                                 </li>										
                             </ul>
                         </div>

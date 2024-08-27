@@ -11,4 +11,9 @@ urlpatterns = [
     path('payment/', views.payment,name='payment'),
     path('payments/',views.payments,name='payments'),
     path('payment_complete/', views.payment_complete, name='payment_complete'),
+    path('about_us/', views.about_us, name='about_us'),
+    path('faqs/', views.faqs, name='faq'),
+    path('privacy/', views.privacy, name='privacy'),
+    path('terms/', views.terms, name='terms'),
+    path('contact/', views.contact, name='contact'),
 ]

@@ -21,6 +21,7 @@ def home(request):
     context={
         'category':category,
         'hotel_room':hotel_room,
+        'home':True
     }
     return render(request,'home/home.html',context)
 
@@ -187,3 +188,26 @@ def payments(request):
    
 def payment_complete(request):
     return render(request,'home/payment_complete.html')
+
+
+
+
+def about_us(request):
+    return render(request,'company/about.html')
+
+
+
+def faqs(request):
+    return render(request,'company/faq.html')
+
+
+def terms(request):
+    pass
+
+
+def contact(request):
+    return render(request,'company/contact.html')
+
+
+def privacy(requset):
+    return render(requset,'company/privacy.html')
