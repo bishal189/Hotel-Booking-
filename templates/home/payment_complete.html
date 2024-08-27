@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block content %}
+	
+	<div class="mainwrapper error-page">
+		
+	   	<div class="content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 mx-auto">
+						<div class="error-wrap">
+						
+							<div class="error-logo">
+								<a href="index.html"><img class="img-fluid" src="{% static 'assets/img/logo.svg' %}" alt="img"></a>
+							</div>
+							<h2>Payment Successfull !</h2>
+							<div class="error-img">
+								<img class="img-fluid" src="{% static 'assets/sucess.jpg' %}" alt="img">
+							</div>
+							<a href="{% url 'dashboard' %}" class="btn btn-primary rounded-pill">Your Booking</a>
+							<a href="{% url 'home' %}" class="btn btn-primary rounded-pill">Back Home</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+{% endblock %}				

@@ -31,6 +31,7 @@
 									    <th class="no-sort" >Image</th>										 
 									    <th class="no-sort">Details</th>										 
 									    <th>Status</th>										 
+									    <th>Payment Id</th>										 
 									  									 
 									    <th class="no-sort">Action</th>										 
 									 </tr>	
@@ -47,7 +48,17 @@
 										     <div class="listingtable-rate"><a href="javascript:void(0)" class="cat-icon"><i class="fa-regular fa-circle-stop"></i> {{item.room.category.name}}</a> <span class="fixed-amt">€{{item.room.price_per_night}}</span></div>
 					
 										 </td>
-									     <td><span class="status-text">Booked</span></td>
+										 
+									     <td><span class="status-text">Completed</span></td>
+										 {% for payment in payments %}
+										 {% if payment.booking == item %}
+									     <td><span class="status-text">{{ payment.transaction_id }}</span></td>
+										 {% endif %}
+									     
+
+										 
+										
+										 {% endfor %}
 									     
 									     <td>
 										    <div class="action">

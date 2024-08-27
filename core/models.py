@@ -39,6 +39,8 @@ class HotelRoom(models.Model):
     hotel_images=models.FileField(upload_to='hotelroom')
     is_booked=models.BooleanField(default=False)
 
+
+
     def __str__(self):
         return f'Room {self.room_number}'
 
@@ -61,7 +63,7 @@ class HotelRoom(models.Model):
 
 
 class Booking(models.Model):
-    room = models.ForeignKey(HotelRoom, on_delete=models.CASCADE,unique=True)
+    room = models.ForeignKey(HotelRoom, on_delete=models.CASCADE)
     guest = models.ForeignKey(Account, on_delete=models.CASCADE) 
     check_in_date = models.DateField()
     check_out_date = models.DateField()
@@ -70,7 +72,9 @@ class Booking(models.Model):
     guest_phone = models.CharField(max_length=15, blank=True, null=True)
     special_requests = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    payment_deadline = models.DateTimeField()  # New field for payment deadline
+    payment_deadline = models.DateTimeField()
+    payment_completed = models.BooleanField(default=False) 
+
 
    
     def __str__(self):
@@ -80,19 +84,13 @@ class Booking(models.Model):
 
 
 class Payment(models.Model):
-    PAYMENT_METHODS = (
-        ('credit_card', 'Credit Card'),
-        ('paypal', 'PayPal'),
-        ('bank_transfer', 'Bank Transfer'),
-      
-    )
-
-    
+    booking=models.ForeignKey(Booking,on_delete=models.CASCADE,blank=True,null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_method = models.CharField(max_length=20, choices=PAYMENT_METHODS)
+    payment_method = models.CharField(max_length=20, default='')
     payment_status = models.CharField(max_length=20, default='Pending') 
     payment_date = models.DateTimeField(auto_now=True,null=True, blank=True)
     transaction_id = models.CharField(max_length=100, blank=True, null=True) 
+    user=models.ForeignKey(Account,on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return f'Payment of {self.amount} via {self.payment_method} - Status: {self.payment_status}'

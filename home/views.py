@@ -1,8 +1,12 @@
 from django.shortcuts import render,redirect
-from core.models import Category,HotelRoom,Booking
+from core.models import Category,HotelRoom,Booking,Payment
 from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
+import json
+from django.http import JsonResponse
+
+
 
 
 # Create your views here.
@@ -95,6 +99,7 @@ def booking_forms(request,id):
         
       
         request.session['id'] = id
+        request.session['booking_id']=booking.id
         messages.success(request, 'Booked  successfully!')
         return redirect('payment')
 
@@ -114,9 +119,12 @@ def booking_forms(request,id):
 
 
 def dashboard(request):
-    booking=Booking.objects.filter(guest=request.user)
+    booking=Booking.objects.filter(guest=request.user,payment_completed=True)
+    payments = Payment.objects.filter(booking__in=booking)  
+
     context={
-        'book':booking
+        'book':booking,
+        'payments':payments
     }
     return render(request,'home/dashboard.html',context)   
 
@@ -134,9 +142,48 @@ def delete_booking(request,id):
 def payment(request):
     id = request.session.get('id')
     room=HotelRoom.objects.get(id=id)
+    amount =room.price_per_night
+    code = 'EUR'
     context={
-        'room':room
+        'room':room,
+        'amount':amount,
+        'code':code
     }
     
 
     return render(request,'home/payment.html',context)     
+
+
+def payments(request):
+    
+    body=json.loads(request.body)
+    booking=request.session.get('booking_id')
+    book=Booking.objects.get(id=booking)
+    
+  
+    payment=Payment.objects.create(
+        user=request.user,
+        transaction_id=body['transID'],
+        payment_method=body['payment_method'],
+        amount=body['amount'],
+        payment_status=body['status'],
+        booking=book
+
+
+
+    )
+    payment.save()
+    
+    book.payment_completed=True
+    book.save()      
+    data={
+       
+        'transID':payment.transaction_id
+
+    }
+    return JsonResponse(data)
+
+
+   
+def payment_complete(request):
+    return render(request,'home/payment_complete.html')
