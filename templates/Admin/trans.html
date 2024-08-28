@@ -1,11 +1,10 @@
 {% extends 'Admin/base.html' %}
-
 {% load static %} 
 {% block content %}
     <div class="main-wrapper">
     
         <!-- Header -->
-      {% include 'Admin/includes/header.html' %}
+       {% include 'Admin/includes/header.html' %}
         <!-- /Header -->
         
         <!-- Sidebar -->
@@ -13,10 +12,10 @@
             <div class="sidebar-header">
                 <div class="sidebar-logo">
                     <a href="index.html">
-                        <img src="{% static 'admin/assets/img/logo.svg' %}" class="img-fluid logo" alt="">
+                        <img src="assets/img/logo.svg" class="img-fluid logo" alt="">
                     </a>
                     <a href="index.html">
-                        <img src="{% static 'admin/assets/img/logo-small.svg' %}" class="img-fluid logo-small" alt="">
+                        <img src="assets/img/logo-small.svg" class="img-fluid logo-small" alt="">
                     </a>
                 </div>
                 <div class="siderbar-toggle">
@@ -33,65 +32,78 @@
         
         <div class="page-wrapper page-settings">
             <div class="content">
-                <div class="content-page-header content-page-headersplit mb-0">
-                    <h5>Featured Rooms</h5>
+                <div class="content-page-header content-page-headersplit">
+                    <h5>Transactions</h5>
                     <div class="list-btn">
                         <ul>
                             <li>
-                                <a class="btn-filters active" href="#"><i class="fe fe-list"></i> </a>
+                                <a class="btn-filters active" href="sales-transactions.html"><i class="fe fe-list"></i> </a>
                             </li>
                             <li>
                                 <a class="btn-filters" href="javascript:void(0);"><i class="fe fe-grid"></i> </a>
                             </li>
                             <li>
-                                <a class="btn-filters" href="#"><i class="fe fe-settings"></i> </a>
+                                <a class="btn-filters" href="localization.html"><i class="fe fe-settings"></i> </a>
                             </li>
                            
-                            <li>
-                                <a class="btn btn-primary" href="add-categories.html"><i class="fa fa-plus me-2"></i>Add Rooms </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 ">
-                        <div class="table-resposnive table-div">
-                           
+                        <div class="table-resposnive">
                             <table class="table datatable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Customer</th>
                                         <th>Room</th>
-                                        <th>Category</th>
+                                        <th>Amount</th>
+                                        <th>Discount</th>
+                                        <th>Tax</th>
                                         <th>Date</th>
-                                        <th>Featured</th>
+                                        <th>Payment Type</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for room in rooms %}
+                                    {% for payment in payments %}
                                     <tr>
                                         <td>{{forloop.counter}}</td>
                                         <td>
-                                            <div class="table-imgname">
-                                                <img src="{{room.hotel_images.url}}" class="me-2" alt="img">
-                                                <span>{{room.room_number}}</span>
+                                            <div class="table-namesplit">
+                                                {% comment %} <a href="javascript:void(0);" class="table-profileimage">
+                                                    <img src="assets/img/customer/user-01.jpg" class="me-2" alt="img">
+                                                </a> {% endcomment %}
+                                                <a href="javascript:void(0);" class="table-name">
+                                                    <span>{{payment.user.full_name}}</span>
+                                                    <p>{{payment.user.email}}</p>
+                                                </a>
                                             </div>
                                         </td>
-                                        <td>{{room.category.name}}</td>
-                                        <td>{{room.created_at}}</td>
+                                       
                                         <td>
-                                            <div class="active-switch">
-                                                <label class="switch">
-                                                    <input type="checkbox" checked="">
-                                                    <span class="sliders round"></span>
-                                                </label>
-                                            </div>
+                                            <a href="javascript:void(0);" class="table-imgname">
+                                                <img src="{{payment.booking.room.hotel_images.url}}" class="me-2" alt="img">
+                                                {{payment.booking.room.room_number}}
+                                                
+                                            </a>
                                         </td>
+                                        <td>${{payment.amount}}</td>
+                                        <td>€0</td>
+                                        <td>€0</td>
+                                        <td>{{payment.payment_date}}</td>
+                                        <td>{{payment.payment_method}}</td>
+                                        {% if payment.payment_status %}
+                                        <td><h6 class="badge-active">successful</h6></td>
+                                        {% else %}
+                                        <td><h6 class="badge-active">Pending</h6></td>
+                                        {% endif %}
                                         <td>
                                             <div class="table-actions d-flex">
-                                                <a class="delete-table me-2" href="edit-categories.html" >
-                                                   <img src="{% static 'admin/assets/img/icons/edit.svg' %}" alt="svg">
+                                                <a class="delete-table me-2" href="javascript:void(0);">
+                                                   <img src="{% static 'admin/assets/img/icons/pdf.svg' %}" alt="svg">
                                                 </a>
                                                 <a class="delete-table" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete-item">
                                                     <img src="{% static 'admin/assets/img/icons/delete.svg' %}" alt="svg">
@@ -100,11 +112,9 @@
                                         </td>
                                     </tr>
                                     {% endfor %}
-                                   
-                                    <!-- Add more rows as needed following the same pattern -->
+                                
                                 </tbody>
                             </table>
-                            
                         </div>
                     </div>
                 </div>
@@ -112,17 +122,17 @@
         </div> 
     </div>
 
-    <!-- Delete -->
-    <div class="modal fade" id="delete-item" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <!-- Delete -->
+     <div class="modal fade" id="delete-item" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered ">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Delete Categories</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Delete Transactions</h5>
 					<button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close">
 						<i class="fe fe-x"></i>
 					</button>
 				</div>
-                <form action="categories.html">
+                <form action="sales-transactions.html">
                     <div class="modal-body py-0">
                         <div class="del-modal">
                             <p>Are you sure want to Delete?</p>
@@ -136,15 +146,5 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
     <!-- /Delete -->
-
-
-
-   
 {% endblock %}

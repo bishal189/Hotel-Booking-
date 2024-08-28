@@ -34,7 +34,7 @@
         <div class="page-wrapper page-settings">
             <div class="content">
                 <div class="content-page-header content-page-headersplit mb-0">
-                    <h5>Featured Rooms</h5>
+                    <h5>Features</h5>
                     <div class="list-btn">
                         <ul>
                             <li>
@@ -48,7 +48,7 @@
                             </li>
                            
                             <li>
-                                <a class="btn btn-primary" href="add-categories.html"><i class="fa fa-plus me-2"></i>Add Rooms </a>
+                                <a class="btn btn-primary" href="add-categories.html"><i class="fa fa-plus me-2"></i>Add Features </a>
                             </li>
                         </ul>
                     </div>
@@ -61,33 +61,28 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Room</th>
-                                        <th>Category</th>
+                                        <th>Feature Name</th>
                                         <th>Date</th>
-                                        <th>Featured</th>
+                                        <th>Images</th> 
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for room in rooms %}
+                                    {% for feature in features %}
                                     <tr>
                                         <td>{{forloop.counter}}</td>
                                         <td>
                                             <div class="table-imgname">
-                                                <img src="{{room.hotel_images.url}}" class="me-2" alt="img">
-                                                <span>{{room.room_number}}</span>
+                                                <span>{{feature.name}}</span>
                                             </div>
                                         </td>
-                                        <td>{{room.category.name}}</td>
-                                        <td>{{room.created_at}}</td>
-                                        <td>
-                                            <div class="active-switch">
-                                                <label class="switch">
-                                                    <input type="checkbox" checked="">
-                                                    <span class="sliders round"></span>
-                                                </label>
-                                            </div>
-                                        </td>
+                                        <td>{{feature.created_at}}</td>
+                                        
+                                        <td> <div class="table-imgname">
+                                            <img src="{{feature.image.url}}" class="me-2" alt="img">
+                                           
+                                        </div>
+                                    </td>
                                         <td>
                                             <div class="table-actions d-flex">
                                                 <a class="delete-table me-2" href="edit-categories.html" >
@@ -136,15 +131,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
     <!-- /Delete -->
 
-
-
-   
 {% endblock %}

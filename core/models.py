@@ -8,6 +8,7 @@ from django.utils import timezone
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     catgory_image=models.FileField(upload_to='category_image',blank=True,null=True)
+    created_at=models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -16,6 +17,7 @@ class Category(models.Model):
 class Amenity(models.Model):
     name = models.CharField(max_length=100, unique=True)
     image=models.FileField(upload_to='amenity/',blank=True,null=True)
+    created_at=models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.name
@@ -39,6 +41,7 @@ class HotelRoom(models.Model):
     amenities = models.ManyToManyField(Amenity, related_name='rooms')
     hotel_images=models.FileField(upload_to='hotelroom')
     is_booked=models.BooleanField(default=False)
+    created_at=models.DateTimeField(auto_now=True)
 
 
 
@@ -92,6 +95,7 @@ class Payment(models.Model):
     payment_date = models.DateTimeField(auto_now=True,null=True, blank=True)
     transaction_id = models.CharField(max_length=100, blank=True, null=True) 
     user=models.ForeignKey(Account,on_delete=models.CASCADE,blank=True,null=True)
+    created_at=models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'Payment of {self.amount} via {self.payment_method} - Status: {self.payment_status}'

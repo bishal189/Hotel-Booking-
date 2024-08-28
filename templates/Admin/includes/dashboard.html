@@ -18,36 +18,34 @@
                         </li>
                         <li>
                             <a href="{% url 'admin_category' %}"><i class="fe fe-file-text"></i> 
-                                <span>Categories</span>
+                                <span>Hotel Room</span>
                             </a>
                         </li>
                         <li>
-                            <a href="sub-categories.html"><i class="fe fe-clipboard"></i> <span>Sub Categories</span></a>
+                            <a href="{% url 'category_admin' %}"><i class="fe fe-clipboard"></i> <span>Categories</span></a>
                         </li>
-                        <li>
-                            <a href="locations.html"><i class='fe fe-map'></i><span>Locations</span></a>
-                        </li>
+                       
                        
                      
                         <li>
-                            <a href="amenities.html"><i class='fe fe-briefcase'></i><span>Amenities</span></a>
+                            <a href="{% url 'features' %}"><i class='fe fe-briefcase'></i><span>Amenities</span></a>
                         </li>
                        
                         <li class="menu-title">
                             <h6>Finance & Accounts</h6>
                         </li>
                         <li>
-                            <a href="transactions.html"><i class="fe fe-bar-chart"></i> <span>Transactions</span></a>
+                            <a href="{% url 'trans' %}"><i class="fe fe-bar-chart"></i> <span>Transactions</span></a>
                         </li>
                         
                       
                        
                         
                         <li>
-                            <a href="localization.html" ><i class="fe fe-settings"></i> <span>Settings</span></a>
+                            <a href="#" ><i class="fe fe-settings"></i> <span>Settings</span></a>
                         </li>
                         <li>
-                            <a href="{% url 'logout' %}"><i class="fe fe-log-out"></i> <span>Logout</span></a>
+                            <a href="{% url 'logout' %}" data-bs-toggle="modal" data-bs-target="#logout-item"><i class="fe fe-log-out"></i> <span>Logout</span></a>
                         </li>
                     </ul>
                 </div>

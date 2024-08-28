@@ -39,6 +39,32 @@
 
     {% block content %}
     {% endblock %}
+     <!--logout-->
+        <!-- Delete -->
+        <div class="modal fade" id="logout-item" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                        <button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fe fe-x"></i>
+                        </button>
+                    </div>
+                    <form action="categories.html">
+                        <div class="modal-body py-0">
+                            <div class="del-modal">
+                                <p>Are you sure want to Logout?</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer pt-0">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+
 <!-- jQuery -->
 <script src="{% static 'admin/assets/js/jquery-3.6.4.min.js' %}"></script>
 

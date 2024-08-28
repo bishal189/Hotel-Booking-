@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from auths.models import Account
-from core.models import HotelRoom,Booking
+from core.models import HotelRoom,Booking,Category,Amenity,Payment
 
 
 # Create your views here.
@@ -21,4 +21,40 @@ def index(request):
 
 
 def category(request):
-    return render(request,'Admin/category.html')
+    room=HotelRoom.objects.all().order_by('-id')
+    context={
+        'rooms':room
+    }
+    return render(request,'Admin/category.html',context)
+
+
+def cat(request):
+    category=Category.objects.all().order_by('-id')
+    
+    context={
+        'category':category
+            
+    }
+    return render(request,'Admin/cat.html',context)
+
+
+def features(request):
+    features=Amenity.objects.all().order_by('-id')
+    
+    
+    context={
+        'features':features
+        
+    }
+    
+    return render(request,'Admin/feature.html',context)
+
+
+
+
+def trans(request):
+    payment=Payment.objects.all().order_by('-id')
+    context={
+        'payments':payment
+    }
+    return render(request,'Admin/trans.html',context)
