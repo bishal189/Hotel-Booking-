@@ -18,3 +18,7 @@ def index(request):
     }
     
     return render(request,'Admin/index.html',context)
+
+
+def category(request):
+    return render(request,'Admin/category.html')
