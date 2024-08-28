@@ -6,7 +6,7 @@
                             <h6>Home</h6>
                         </li>
                         <li>
-                            <a href="{% url 'admin_index' %}" class="active"><i class="fe fe-grid"></i> <span>Dashboard</span></a>
+                            <a href="{% url 'admin_index' %}" class="{% if request.path == '/admins/index/' %}active{% endif %}"><i class="fe fe-grid"></i> <span>Dashboard</span></a>
                         </li>
                         <li class="menu-title">
                             <h6>Listing</h6>
@@ -17,25 +17,25 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'admin_category' %}"><i class="fe fe-file-text"></i> 
+                            <a href="{% url 'admin_category' %}" class="{% if request.path == '/admins/rooms/' %}active{% endif %}"><i class="fe fe-file-text"></i> 
                                 <span>Hotel Room</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'category_admin' %}"><i class="fe fe-clipboard"></i> <span>Categories</span></a>
+                            <a href="{% url 'category_admin' %}" class="{% if request.path == '/admins/category/' %}active{% endif %}"><i class="fe fe-clipboard"></i> <span>Categories</span></a>
                         </li>
                        
                        
                      
                         <li>
-                            <a href="{% url 'features' %}"><i class='fe fe-briefcase'></i><span>Amenities</span></a>
+                            <a href="{% url 'features' %}" class="{% if request.path == '/admins/features/' %}active{% endif %}"><i class='fe fe-briefcase'></i><span>Amenities</span></a>
                         </li>
                        
                         <li class="menu-title">
                             <h6>Finance & Accounts</h6>
                         </li>
                         <li>
-                            <a href="{% url 'trans' %}"><i class="fe fe-bar-chart"></i> <span>Transactions</span></a>
+                            <a href="{% url 'trans' %}" class="{% if request.path == '/admins/transactions/' %}active{% endif %}"><i class="fe fe-bar-chart"></i> <span>Transactions</span></a>
                         </li>
                         
                       
