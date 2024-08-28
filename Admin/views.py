@@ -58,3 +58,12 @@ def trans(request):
         'payments':payment
     }
     return render(request,'Admin/trans.html',context)
+
+
+
+def all_users(request):
+    users=Account.objects.all().order_by('-id')
+    context={
+        'users':users
+    }
+    return render(request,'Admin/user.html',context)

@@ -2,10 +2,10 @@
 {% load static %}
 <div class="header">
     <div class="header-left"> 
-        <a href="index.html" class="logo">
+        <a href="{% url 'admin_index' %}" class="logo">
             <img src="{% static 'admin/assets/img/logo.svg' %}" alt="Logo" width="30" height="30">
         </a>
-        <a href="index.html" class=" logo-small">
+        <a href="{% url 'admin_index' %}" class=" logo-small">
             <img src="{% static 'admin/assets/img/logo-small.svg' %}" alt="Logo" width="30" height="30">
         </a>
     </div>
@@ -15,8 +15,8 @@
     <div class="header-split">
         <div class="page-headers">
             <div class="search-bar">
-                <span><i class="fe fe-search"></i></span>
-                <input type="text" placeholder="Search" class="form-control">
+                {% comment %} <span><i class="fe fe-search"></i></span>
+                <input type="text" placeholder="Search" class="form-control"> {% endcomment %}
             </div>
         </div>
         <ul class="nav user-menu">

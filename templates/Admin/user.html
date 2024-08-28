@@ -1,0 +1,140 @@
+{% extends 'Admin/base.html' %}
+
+{% load static %} 
+{% block content %}
+    <div class="main-wrapper">
+    
+        <!-- Header -->
+      {% include 'Admin/includes/header.html' %}
+        <!-- /Header -->
+        
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <a href="{% url 'admin_index' %}">
+                        <img src="{% static 'admin/assets/img/logo.svg' %}" class="img-fluid logo" alt="">
+                    </a>
+                    <a href="{% url 'admin_index' %}">
+                        <img src="{% static 'admin/assets/img/logo-small.svg' %}" class="img-fluid logo-small" alt="">
+                    </a>
+                </div>
+                <div class="siderbar-toggle">
+                    <label class="switch" id="toggle_btn">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+           {% include 'Admin/includes/dashboard.html' %}
+        </div>
+        <!-- /Sidebar -->
+        
+        <div class="page-wrapper page-settings">
+            <div class="content">
+                <div class="content-page-header content-page-headersplit mb-0">
+                    <h5>#All Users</h5>
+                    <div class="list-btn">
+                        <ul>
+                            <li>
+                                <a class="btn-filters active" href="#"><i class="fe fe-list"></i> </a>
+                            </li>
+                            <li>
+                                <a class="btn-filters" href="javascript:void(0);"><i class="fe fe-grid"></i> </a>
+                            </li>
+                            <li>
+                                <a class="btn-filters" href="#"><i class="fe fe-settings"></i> </a>
+                            </li>
+                           
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 ">
+                        <div class="table-resposnive table-div">
+                           
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Date Joined</th>
+                                        <th>Is Active</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>
+                                            {{user.full_name}}
+                                        </td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.date_joined}}</td>
+                                        <td>
+                                        <h6 class="badge-active">{{user.is_active}}</h6>
+                                        </td>
+                                        <td>
+                                            <div class="table-actions d-flex">
+                                                <a class="delete-table me-2" href="edit-categories.html" >
+                                                   <img src="{% static 'admin/assets/img/icons/edit.svg' %}" alt="svg">
+                                                </a>
+                                                <a class="delete-table" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete-item">
+                                                    <img src="{% static 'admin/assets/img/icons/delete.svg' %}" alt="svg">
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                   
+                                    <!-- Add more rows as needed following the same pattern -->
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <!-- Delete -->
+    <div class="modal fade" id="delete-item" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Delete Categories</h5>
+					<button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close">
+						<i class="fe fe-x"></i>
+					</button>
+				</div>
+                <form action="categories.html">
+                    <div class="modal-body py-0">
+                        <div class="del-modal">
+                            <p>Are you sure want to Delete?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer pt-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                    </div>
+                </form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+    <!-- /Delete -->
+
+
+
+   
+{% endblock %}

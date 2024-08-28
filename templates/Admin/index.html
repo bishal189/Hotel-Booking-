@@ -12,10 +12,10 @@
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
-                    <a href="index.html">
+                    <a href="{% url 'admin_index' %}">
                         <img src="{% static 'admin/assets/img/logo.svg' %}" class="img-fluid logo" alt="">
                     </a>
-                    <a href="index.html">
+                    <a href="{% url 'admin_index' %}">
                         <img src="{% static 'admin/assets/img/logo-small.svg' %}" class="img-fluid logo-small" alt="">
                     </a>
                 </div>
@@ -345,7 +345,7 @@
                                 <div class="home-user">
                                     <div class="home-head-user home-graph-header">
                                         <h2>Top Hotel Rooms</h2>
-                                        <a href="listings.html" class="btn btn-viewall">View All<i class="fa-solid fa-arrow-right ms-2"></i></a>
+                                        <a href="{% url 'admin_category' %}" class="btn btn-viewall">View All<i class="fa-solid fa-arrow-right ms-2"></i></a>
                                     </div>
                                     <div class="table-responsive datatable-nofooter">
                                     <table class="table datatable">
@@ -386,7 +386,7 @@
                                 <div class="home-user">
                                     <div class="home-head-user home-graph-header">
                                         <h2>Recent Users</h2>
-                                        <a href="user-providers.html" class="btn btn-viewall">View All<i class="fa-solid fa-arrow-right ms-2"></i></a>
+                                        <a href="{% url 'all_users' %}" class="btn btn-viewall">View All<i class="fa-solid fa-arrow-right ms-2"></i></a>
                                     </div>
                                     <div class="table-responsive datatable-nofooter">
                                         <table class="table datatable ">
@@ -496,6 +496,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="col-lg-4 col-sm-12 d-flex widget-path">
                         <div class="card">
                             <div class="card-body">
@@ -541,7 +543,7 @@
                                 <div class="home-user">
                                     <div class="home-head-user home-graph-header">
                                         <h2>Recent Booking</h2>
-                                        <a href="booking.html" class="btn btn-viewall">View All<i class="fa-solid fa-arrow-right ms-2"></i></a>
+                                        <a href="{% url 'admin_category' %}" class="btn btn-viewall">View All<i class="fa-solid fa-arrow-right ms-2"></i></a>
                                     </div>
                                     <div class="table-responsive datatable-nofooter">
                                         <table class="table datatable">
@@ -567,7 +569,13 @@
                                                     <td>{{ book.check_in_date|date:"H:i:s" }}</td>                         
                                                     
 
-                                                    <td>{{book.room.room_number}}</td>
+                                                  
+                                                    <td>
+                                                        <a href="javascript:void(0);" class="table-profileimage">
+                                                            <img src="{{book.room.hotel_images.url}}" class="me-2" alt="img">
+                                                            <span>{{book.room.room_number}}</span>
+                                                        </a>
+                                                    </td>
 
                                                     <td>
                                                         <a href="javascript:void(0);" class="table-profileimage">

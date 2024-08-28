@@ -8,5 +8,6 @@ urlpatterns = [
     path('category/',views.cat,name='category_admin'),
     path('features/',views.features,name='features'),
     path('transactions/',views.trans,name='trans'),
+    path('all/users/',views.all_users,name='all_users'),
    
 ]
