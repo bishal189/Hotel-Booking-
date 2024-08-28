@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'auths',
     'home',
     'core',
+    'Admin'
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER='heritagehive872@gmail.com'
 EMAIL_HOST_PASSWORD='qozv drew svkw ufgx'
+
+
+LOGIN_URL = '/auths/login/'

@@ -36,7 +36,10 @@
                 <li><a href="{% url 'dashboard' %}">Book Mark</a></li>
                 <li><a href="{% url 'dashboard' %}">My Booking</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
-                <li><a href="admin/index.html" target="_blank">Admin</a></li>
+                {% if user.is_authenticated and user.is_superadmin %}
+                <li><a href="{% url 'admin_index' %}" target="_blank">Admin</a></li>
+                {% endif %}
+            
                 <li class="login-link">
                     <a href="{% url 'login' %}">Sign Up</a>
                 </li>

@@ -5,12 +5,10 @@ from django.utils import timezone
 from datetime import timedelta
 import json
 from django.http import JsonResponse
-
-
-
-
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
+
+
 def home(request):
     category = Category.objects.annotate(
         available_rooms=Count('rooms', filter=Q(rooms__is_available=True))
@@ -47,7 +45,7 @@ def all_rooms(request):
 
 
 
-
+@login_required
 def booking_forms(request,id):
     guest=request.user
     if request.method=='POST':
@@ -118,7 +116,7 @@ def booking_forms(request,id):
     
 
 
-
+@login_required
 def dashboard(request):
     booking=Booking.objects.filter(guest=request.user,payment_completed=True)
     payments = Payment.objects.filter(booking__in=booking)  
@@ -131,7 +129,7 @@ def dashboard(request):
 
 
 
-
+@login_required
 def delete_booking(request,id):
     booking=Booking.objects.get(id=id)
     booking.delete()
@@ -139,7 +137,7 @@ def delete_booking(request,id):
     return redirect('dashboard')
      
      
-     
+@login_required    
 def payment(request):
     id = request.session.get('id')
     room=HotelRoom.objects.get(id=id)
@@ -154,7 +152,7 @@ def payment(request):
 
     return render(request,'home/payment.html',context)     
 
-
+@login_required
 def payments(request):
     
     body=json.loads(request.body)
@@ -185,7 +183,7 @@ def payments(request):
     return JsonResponse(data)
 
 
-   
+@login_required 
 def payment_complete(request):
     return render(request,'home/payment_complete.html')
 
