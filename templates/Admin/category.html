@@ -65,6 +65,7 @@
                                         <th>Category</th>
                                         <th>Date</th>
                                         <th>Featured</th>
+                                        <th>Is Booked?</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -81,10 +82,19 @@
                                         <td>{{room.category.name}}</td>
                                         <td>{{room.created_at}}</td>
                                         
+                                        
                                         <td>
                                             <div class="active-switch"  style="cursor: pointer;">
                                                 <label class="switch"  style="cursor: pointer;">
-                                                    <input type="checkbox" {% if room.is_available %}checked{% endif %}>
+                                                    <input data-room-id="{{ room.id }}" data-status-type="is_booked" type="checkbox" {% if room.is_booked %}checked{% endif %}>
+                                                    <span class="sliders round" style="cursor: pointer;"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="active-switch"  style="cursor: pointer;">
+                                                <label class="switch"  style="cursor: pointer;">
+                                                    <input data-room-id="{{ room.id }}" data-status-type="is_available" type="checkbox" {% if room.is_available %}checked{% endif %}>
                                                     <span class="sliders round" style="cursor: pointer;"></span>
                                                 </label>
                                             </div>
@@ -159,5 +169,38 @@
             var deleteModal = new bootstrap.Modal(document.getElementById('delete-item'));
             deleteModal.show();
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    var roomId = this.getAttribute('data-room-id');
+                    var statusType = this.getAttribute('data-status-type');
+                    var newStatus = this.checked;
+        
+                    fetch('/admins/toggle-room-status/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': '{{ csrf_token }}',  
+                        },
+                        body: new URLSearchParams({
+                            'room_id': roomId,
+                            'status_type': statusType,
+                            'new_status': newStatus,
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            alert('Error: ' + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+        });
+        
     </script>
 {% endblock %}

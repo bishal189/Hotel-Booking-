@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 from auths.models import Account
 from core.models import HotelRoom,Booking,Category,Amenity,Payment
 from decimal import Decimal
@@ -311,3 +313,24 @@ def delete_payment(request,id):
     except:
         pass
             
+            
+
+
+# for toggle booking and is available 
+
+@require_POST
+def toggle_room_status(request):
+    room_id = request.POST.get('room_id')
+    status_type = request.POST.get('status_type') 
+    new_status = request.POST.get('new_status') == 'true'  
+
+    try:
+        room = HotelRoom.objects.get(id=room_id)
+        if status_type == 'is_booked':
+            room.is_booked = new_status
+        elif status_type == 'is_available':
+            room.is_available = new_status
+        room.save()
+        return JsonResponse({'success': True})
+    except HotelRoom.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Room not found'}, status=404)            

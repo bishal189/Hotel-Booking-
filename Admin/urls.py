@@ -27,6 +27,11 @@ urlpatterns = [
     
     # for payment 
     path('delete/payment/<int:id>/',views.delete_payment,name='delete_payment'),
+    
+    
+    # for toogle 
+    
+    path('toggle-room-status/',views.toggle_room_status,name='toggle_room')
 
     
     
