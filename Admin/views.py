@@ -11,12 +11,22 @@ def index(request):
     account=Account.objects.all().order_by('-id')[:5]
     rooms=HotelRoom.objects.all().order_by('-id')[:5]
     booking=Booking.objects.all().order_by('-id')[:5]
+    booked=HotelRoom.objects.filter(is_booked=True).order_by('-id').count()
     account_count=account.count()
+    total_room=rooms.count()
+    payment=Payment.objects.all().order_by('-id')
+    total=0
+    for payment in payment:
+        total=payment.amount + total
+        
     context={
         'accounts':account,
         'account_count':account_count,
         'rooms':rooms,
-        'booking':booking
+        'booking':booking,
+        'booked':booked,
+        'total_room':total_room,
+        'total':total
     }
     
     return render(request,'Admin/index.html',context)
