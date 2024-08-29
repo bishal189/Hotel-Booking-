@@ -204,7 +204,14 @@ def add_category(request):
         return redirect('category_admin')
     else:
         return render(request,'Admin/add_category.html')
-    
+
+
+def delete_category(request,id):
+    category=Category.objects.get(id=id)   
+    category.delete()
+    return redirect('category_admin') 
+
+
     
 def edit_category(request,id):
     if request.method=="POST":
