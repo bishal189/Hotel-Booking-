@@ -272,3 +272,17 @@ def edit_features(request,id):
             'edit':True
         }
         return render(request,'Admin/edit_feature.html',context)            
+    
+def add_features(request):
+    if request.method=='POST':
+        name=request.POST.get('feature_name')
+        photos=request.FILES.get('photos')
+        Amenity.objects.create(
+            name=name,
+            image=photos
+        )
+        print('saved features')
+        return redirect('features')
+   
+    else:
+        return render(request,'Admin/add_feature.html')    
