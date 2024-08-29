@@ -78,7 +78,6 @@ def all_users(request):
 
 def add_room(request):
     if request.method=='POST':
-        print(request.POST,'++++++++==dtat')
         room_number = request.POST.get('room_number','')
         room_type = request.POST.get('room_type','')
         capacity = request.POST.get('capacity','')
@@ -128,3 +127,65 @@ def delete_room(request,id):
     room=HotelRoom.objects.get(id=id)
     room.delete()
     return redirect('admin_category')
+
+
+def edit_room(request,id):
+    room=HotelRoom.objects.get(id=id)
+    if request.method=="POST":
+        print('request data',request.POST)
+        room_number = request.POST.get('room_number','')
+        room_type = request.POST.get('room_type','')
+        capacity = request.POST.get('capacity','')
+        features = request.POST.getlist('features','')
+        
+        category = request.POST.get('category','')
+        category=Category.objects.get(id=category)
+        description = request.POST.get('description','')
+        radio = request.POST.get('is_featured')
+       
+        price_per_night=request.POST.get('price_per_night')
+        photos = request.FILES.get('photos')
+        if photos:
+           room.hotel_images=photos
+            
+       
+      
+                
+        if price_per_night:
+            price_per_night = Decimal(price_per_night)
+        
+        room.room_number=room_number
+        room.room_type=room_type
+        room.capacity=capacity
+        room.category=category
+        room.description=description
+        room.is_available=radio
+        room.price_per_night=price_per_night     
+        room.amenities.add(*features)
+        room.save()
+        return redirect('admin_category')
+    
+    else:
+        selected_feature_ids = room.amenities.values_list('id', flat=True)
+        category=Category.objects.all().order_by('-id')
+        selected_category_id = room.category.id 
+        features=Amenity.objects.all().order_by('-id')
+        
+        print(room.hotel_images)
+
+        context={
+            'room':room,
+            'id':id,
+            'edit':True,
+            'selected_feature_ids':selected_feature_ids,
+            'selected_category_id': selected_category_id,
+            'category':category,
+            'features':features
+        }
+        return render(request,'Admin/edit_room.html',context)
+    
+    
+    
+    
+    
+# for category     

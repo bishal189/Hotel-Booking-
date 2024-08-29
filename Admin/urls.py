@@ -11,5 +11,6 @@ urlpatterns = [
     path('all/users/',views.all_users,name='all_users'),
     path('add/room/',views.add_room,name='add_room'),
     path('delete_room/<int:id>/',views.delete_room,name='delete_room'),
+    path('edit_room/<int:id>/',views.edit_room,name='edit_room'),
    
 ]
