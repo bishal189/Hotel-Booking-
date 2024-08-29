@@ -335,3 +335,12 @@ def toggle_room_status(request):
         return JsonResponse({'success': True})
     except HotelRoom.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Room not found'}, status=404)            
+    
+    
+    
+def book_room(request):
+    rooms=HotelRoom.objects.filter(is_booked=True).order_by('-id')
+    context={
+        'rooms':rooms
+    }
+    return render(request,'Admin/book_room.html',context)    

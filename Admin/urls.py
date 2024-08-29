@@ -31,7 +31,8 @@ urlpatterns = [
     
     # for toogle 
     
-    path('toggle-room-status/',views.toggle_room_status,name='toggle_room')
+    path('toggle-room-status/',views.toggle_room_status,name='toggle_room'),
+    path('book-room/',views.book_room,name='book_room')
 
     
     

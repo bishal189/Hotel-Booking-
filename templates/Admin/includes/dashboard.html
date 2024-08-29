@@ -42,7 +42,7 @@
                        
                         
                         <li>
-                            <a href="#" ><i class="fe fe-settings"></i> <span>Settings</span></a>
+                            <a href="{% url 'book_room' %}"  class="{% if request.path == '/admins/book-room/' %}active{% endif %}"><i class="fe fe-settings"></i> <span>Booked Room</span></a>
                         </li>
                         <li>
                             <a href="{% url 'logout' %}" data-bs-toggle="modal" data-bs-target="#logout-item"><i class="fe fe-log-out"></i> <span>Logout</span></a>
