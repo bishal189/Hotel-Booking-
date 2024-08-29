@@ -331,6 +331,7 @@ def toggle_room_status(request):
         elif status_type == 'is_available':
             room.is_available = new_status
         room.save()
+        print('saved')
         return JsonResponse({'success': True})
     except HotelRoom.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Room not found'}, status=404)            

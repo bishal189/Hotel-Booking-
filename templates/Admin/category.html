@@ -82,19 +82,20 @@
                                         <td>{{room.category.name}}</td>
                                         <td>{{room.created_at}}</td>
                                         
-                                        
-                                        <td>
-                                            <div class="active-switch"  style="cursor: pointer;">
-                                                <label class="switch"  style="cursor: pointer;">
-                                                    <input data-room-id="{{ room.id }}" data-status-type="is_booked" type="checkbox" {% if room.is_booked %}checked{% endif %}>
-                                                    <span class="sliders round" style="cursor: pointer;"></span>
-                                                </label>
-                                            </div>
-                                        </td>
+                                      
                                         <td>
                                             <div class="active-switch"  style="cursor: pointer;">
                                                 <label class="switch"  style="cursor: pointer;">
                                                     <input data-room-id="{{ room.id }}" data-status-type="is_available" type="checkbox" {% if room.is_available %}checked{% endif %}>
+                                                    <span class="sliders round" style="cursor: pointer;"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                          
+                                        <td>
+                                            <div class="active-switch"  style="cursor: pointer;">
+                                                <label class="switch"  style="cursor: pointer;">
+                                                    <input data-room-id="{{ room.id }}" data-status-type="is_booked" type="checkbox" {% if room.is_booked %}checked{% endif %}>
                                                     <span class="sliders round" style="cursor: pointer;"></span>
                                                 </label>
                                             </div>
