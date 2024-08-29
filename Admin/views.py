@@ -286,3 +286,18 @@ def add_features(request):
    
     else:
         return render(request,'Admin/add_feature.html')    
+    
+    
+    
+# for transition 
+
+
+def delete_payment(request,id):
+    try:
+        payment=Payment.objects.get(id=id)
+        payment.delete()
+        return redirect('trans')
+    
+    except:
+        pass
+            

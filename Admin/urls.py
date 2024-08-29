@@ -22,7 +22,14 @@ urlpatterns = [
     
     path('delete/features/<int:id>/',views.delete_features,name='delete_features'),
     path('edit/features/<int:id>/',views.edit_features,name='edit_feature'),
-    path('add/features/',views.add_features,name='add_feature')
+    path('add/features/',views.add_features,name='add_feature'),
+    
+    
+    # for payment 
+    path('delete/payment/<int:id>/',views.delete_payment,name='delete_payment'),
+
+    
+    
 
     
     
