@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from auths.models import Account
 from core.models import HotelRoom,Booking,Category,Amenity,Payment
 from decimal import Decimal
@@ -119,3 +119,12 @@ def add_room(request):
         'category':category
     }
     return render(request,'Admin/add_room.html',context)
+
+
+
+
+
+def delete_room(request,id):
+    room=HotelRoom.objects.get(id=id)
+    room.delete()
+    return redirect('admin_category')
