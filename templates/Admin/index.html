@@ -46,14 +46,7 @@
                                             <a class="delete-table bg-white" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
                                                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                             </a>
-                                            <ul class="dropdown-menu" data-popper-placement="bottom-end">
-                                                <li>
-                                                    <a href="user-list.html" class="dropdown-item"> View</a>
-                                                </li>
-                                                <li>
-                                                    <a href="edit-user.html" class="dropdown-item"> Edit</a>
-                                                </li>
-                                            </ul>
+                                            
                                         </div>
                                     </div>
                                     <div class="home-usercontent">
@@ -85,14 +78,7 @@
                                             <a class="delete-table bg-white" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
                                                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                             </a>
-                                            <ul class="dropdown-menu" data-popper-placement="bottom-end">
-                                                <li>
-                                                    <a href="user-providers.html" class="dropdown-item"> View</a>
-                                                </li>
-                                                <li>
-                                                    <a href="edit-provider.html" class="dropdown-item"> Edit</a>
-                                                </li>
-                                            </ul>
+                                           
                                         </div>
                                     </div>
                                     <div class="home-usercontent">
@@ -127,14 +113,7 @@
                                             <a class="delete-table bg-white" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
                                                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                             </a>
-                                            <ul class="dropdown-menu" data-popper-placement="bottom-end">
-                                                <li>
-                                                    <a href="listings.html" class="dropdown-item"> View</a>
-                                                </li>
-                                                <li>
-                                                    <a href="edit-service.html" class="dropdown-item"> Edit</a>
-                                                </li>
-                                            </ul>
+                                           
                                         </div>
                                     </div>
                                     <div class="home-usercontent">
@@ -170,14 +149,7 @@
                                             <a class="delete-table bg-white" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
                                                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                             </a>
-                                            <ul class="dropdown-menu" data-popper-placement="bottom-end">
-                                                <li>
-                                                    <a href="{% static 'admin/membership.html' %}" class="dropdown-item"> View</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0);" class="dropdown-item"> Edit</a>
-                                                </li>
-                                            </ul>
+                                           
                                         </div>
                                     </div>
                                     <div class="home-usercontent">
@@ -504,7 +476,7 @@
                                 <div class="home-user">
                                     <div class="home-head-user home-graph-header">
                                         <h2>Booking Statistics</h2>
-                                        <a href="booking.html" class="btn btn-viewall">View All<i class="fa-solid fa-arrow-right ms-2"></i></a>
+                                        <a href="{% url 'admin_category' %}" class="btn btn-viewall">View All<i class="fa-solid fa-arrow-right ms-2"></i></a>
                                     </div>
                                     <div class="chartgraph">
                                         <div class="row align-items-center">
