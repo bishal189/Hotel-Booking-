@@ -250,4 +250,25 @@ def delete_features(request,id):
     
     except:
         pass
-            
+
+
+def edit_features(request,id):
+    feature=Amenity.objects.get(id=id)
+    if request.method=="POST":
+        name=request.POST.get('feature_name')
+        photos=request.FILES.get('photos')
+        
+        if photos:
+            feature.image=photos
+        feature.name=name
+        feature.save()
+        print('saved')
+        return redirect('features')    
+    
+    else:
+        context={
+            'id':id,
+            'feature':feature,
+            'edit':True
+        }
+        return render(request,'Admin/edit_feature.html',context)            
