@@ -214,8 +214,24 @@ def delete_category(request,id):
 
     
 def edit_category(request,id):
+    category=Category.objects.get(id=id)
     if request.method=="POST":
-        pass
+        category_name=request.POST.get('category_name')
+        photos = request.FILES.get('photos')
+        category.name=category_name
+        if photos:
+            category.catgory_image=photos
+            
+        category.save()
+        return redirect('category_admin')
+        
+      
+        
     
     else:
-        return render(request,"Admin/edit_category.html")    
+        context={
+            'id':id,
+            'category':category,
+            'edit':True
+        }
+        return render(request,"Admin/edit_category.html",context)    
