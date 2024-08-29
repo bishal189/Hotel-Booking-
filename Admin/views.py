@@ -235,3 +235,19 @@ def edit_category(request,id):
             'edit':True
         }
         return render(request,"Admin/edit_category.html",context)    
+    
+    
+    
+    
+# for fatures 
+
+
+def delete_features(request,id):
+    try:
+        feature=Amenity.objects.get(id=id)
+        feature.delete()
+        return redirect('features')
+    
+    except:
+        pass
+            
