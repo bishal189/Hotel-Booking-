@@ -188,4 +188,27 @@ def edit_room(request,id):
     
     
     
-# for category     
+# for category 
+
+def add_category(request):
+    if request.method == "POST":
+        category_name=request.POST.get('category_name')
+        photos = request.FILES.get('photos')
+        print(request.POST,'++++++++++++++>S')
+        
+        Category.objects.create(
+            name=category_name,
+            catgory_image=photos
+        )
+        print('saved')
+        return redirect('category_admin')
+    else:
+        return render(request,'Admin/add_category.html')
+    
+    
+def edit_category(request,id):
+    if request.method=="POST":
+        pass
+    
+    else:
+        return render(request,"Admin/edit_category.html")    

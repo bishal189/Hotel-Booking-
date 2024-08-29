@@ -12,5 +12,12 @@ urlpatterns = [
     path('add/room/',views.add_room,name='add_room'),
     path('delete_room/<int:id>/',views.delete_room,name='delete_room'),
     path('edit_room/<int:id>/',views.edit_room,name='edit_room'),
+    
+    # for category 
+    path("add/category/",views.add_category,name='add_category'),
+    path('edit_category/<int:id>/',views.edit_category,name='edit_category'),
+
+    
+    
    
 ]
