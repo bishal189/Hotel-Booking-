@@ -62,9 +62,9 @@
                                                 <input type="file" id="imgInp" class="form-control" name='photos' value="{{ photo.image.url }}">
                                                 <a href="javascript:void(0);" class="btn btn-upload">Upload Images </a>
                                                 <p>Recommended Icon Size is 48*48</p>
-                                           {% if photo.image %}
-                                                <input type="hidden" name="current_image" value="{{ photo.image.url }}">
-                                            {% endif %}
+                                            {% if photo.image %}
+                                                    <input type="hidden" name="current_image" value="{{ photo.image.url }}">
+                                                {% endif %}
 
                                                                         
                                          </div>

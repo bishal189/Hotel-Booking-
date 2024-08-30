@@ -27,12 +27,12 @@
                             <a href="#"><img src="{% static 'assets/img/footerlogo.svg' %}" alt="logo"></a>
                         </div>
                         <div class="footer-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt et magna aliqua.  </p>
+                            <p>Welcome to our hotels, where comfort and quality come together. Whether you're here for business or a vacation, our hotels provide everything you need for a great stay. Enjoy comfortable rooms, friendly service, and all the amenities to make you feel at home. Join us for a relaxing and enjoyable experience. Book your stay today and see why so many travelers choose us as their home away from home.  </p>
                         </div>
                         <div class="social-icon">
                             <ul>
                                 <li>
-                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                    <a href="https://www.facebook.com/SkyHotel2004Nicosia" target="_blank"><i class="fab fa-facebook-f"></i> </a>
                                 </li>
                                 <li>
                                     <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
@@ -54,19 +54,17 @@
                         <h2 class="footer-title">About us</h2>
                         <ul>
                             <li>
-                                <a href="about.html">Our product</a>
+                                <a href="{% url 'about_us' %}">Our product</a>
                             </li>
+                            
                             <li>
-                                <a href="javascript:void(0)">Documentation</a>
-                            </li>
-                            <li>
-                                <a href="service-details.html">Our Services</a>
+                                <a href="{% url 'all_rooms' %}">Our Services</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0)">Get Started Us</a>
                             </li>
                             <li>
-                                <a href="contact.html">Contact Us</a>
+                                <a href="{% url 'contact' %}">Contact Us</a>
                             </li>									
                         </ul>
                     </div>
@@ -89,9 +87,7 @@
                             <li>
                                 <a href="javascript:void(0)">Carriers</a>
                             </li>
-                            <li>
-                                <a href="blog-list.html">Our Blog</a>
-                            </li>									
+                            									
                         </ul>
                     </div>
                     <!-- /Footer Widget -->
@@ -127,11 +123,11 @@
                         <div class="footer-contact-info">
                                 <div class="footer-address">
                                     <img src="{% static 'assets/img/call-calling.svg' %}" alt="Callus">
-                                    <p><span>Call Us</span> <br> +017 123 456 78	 </p>
+                                    <p><span>Call Us</span> <br> +375 22 666 880 </p>
                                 </div>
                                 <div class="footer-address">
                                     <img src="{% static 'assets/img/sms-tracking.svg' %}" alt="Callus">
-                                    <p><span>Send Message</span> <br> listee@example.com	 </p>
+                                    <p><span>Send Message</span> <br> reservations@skyhotel.ws <br> skyresrvation.kells@gmail.com	 </p>
                                 </div>							
                         </div>																
                     </div>

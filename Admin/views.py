@@ -384,7 +384,6 @@ def edit_photos(request, id):
         # Get the current image if no new image is uploaded
         current_image = request.FILES.get('current_image')
         
-        print('curent',current_image)
        
         
         # Get the new image if uploaded

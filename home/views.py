@@ -16,12 +16,14 @@ def home(request):
         available_rooms=Count('rooms', filter=Q(rooms__is_available=True))
     ) 
     
-    hotel_room=HotelRoom.objects.all().order_by('-id')   
+    hotel_room=HotelRoom.objects.all().order_by('-id')
+    reviews=Review.objects.all().order_by('-id')[:10]
  
     context={
         'category':category,
         'hotel_room':hotel_room,
-        'home':True
+        'home':True,
+        'reviews':reviews
     }
     return render(request,'home/home.html',context)
 
