@@ -100,3 +100,12 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'Payment of {self.amount} via {self.payment_method} - Status: {self.payment_status}'
+
+
+class Photo(models.Model):
+    hotel = models.ForeignKey(HotelRoom, on_delete=models.CASCADE, related_name='photos')
+    image = models.ImageField(upload_to='hotel_photos/')
+   
+
+    def __str__(self):
+        return f"Photo of {self.hotel.name}"
