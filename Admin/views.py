@@ -356,7 +356,23 @@ def hotel_photos(request):
 
 
 def add_photos(request):
-    pass
+    if request.method=="POST":
+        room_id=request.POST.get('room')
+        hotel_room=HotelRoom.objects.get(id=room_id)
+        photos=request.FILES.get('photos')
+        
+        Photo.objects.create(
+            hotel=hotel_room,
+            image=photos,
+        )
+        print('saved')
+        return redirect('hotel_photos')
+    hotel=HotelRoom.objects.all().order_by('-id')
+    context={
+        'hotels':hotel
+    }
+    return render(request,'Admin/add_photos.html',context)    
+
 
 
 def edit_photos(request,id):

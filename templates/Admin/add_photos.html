@@ -1,0 +1,94 @@
+{% extends 'Admin/base.html' %}
+{% load static %} 
+{% block content %}
+    <div class="main-wrapper">
+    
+        <!-- Header -->
+        {% include 'Admin/includes/header.html' %}
+        <!-- /Header -->
+        
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <a href="{% url 'admin_index' %}">
+                        <img src="{% static 'admin/assets/img/logo.svg' %}" class="img-fluid logo" alt="">
+                    </a>
+                    <a href="{% url 'admin_index' %}">
+                        <img src="{% static 'admin/assets/img/logo-small.svg' %}" class="img-fluid logo-small" alt="">
+                    </a>
+                </div>
+                <div class="siderbar-toggle">
+                    <label class="switch" id="toggle_btn">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+           {% include 'Admin/includes/dashboard.html' %}
+        </div>
+        <!-- /Sidebar -->
+        
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-7 col-sm-12 m-auto">
+                        <div class="content-page-header">
+                            <h5>Add Photos</h5>
+                        </div>
+                        <form action="{% url 'add_photos'  %}"  method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="room-type">Hotel Rooms</label>
+                                        <select id="room-type" class="form-control" name='room' required>
+                                            <option value="" disabled selected>Select Hotel Room</option>
+                                            {% for room in hotels %}
+                                            <option value="{{room.id}}">{{room.room_number}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                             
+                               
+                                
+                              
+                                <div class="col-lg-12">
+                                    <div class="upload-div mb-0">
+                                        <div class="upload-sets">
+                                            <div class="upload-sets-btn form-group">
+                                                <label>Icon <span>(Display in the home page)</span></label>
+                                                <input type="file" id="imgInp" class="form-control" name='photos' >
+                                                <a href="javascript:void(0);" class="btn btn-upload">Upload Images </a>
+                                                <p>Recommended Icon Size is 48*48</p>
+                                            </div>
+                                        </div>
+                                        <div class="upload-img">
+                                            <div class="upload-imgset">	
+                                               
+                                                <img src="{% static 'admin/assets/img/icons/gallery.svg' %}" alt="img" id="blah">
+
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                             
+                                
+                                <div class="col-lg-12">
+                                    <div class="btn-path">                                    
+                                        <a href="javascript:void(0);" class="btn btn-cancel me-3">Cancel</a>
+                                        <button type="submit" class="btn btn-submit "> Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+  {% endblock %}
