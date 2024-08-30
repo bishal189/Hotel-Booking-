@@ -108,4 +108,18 @@ class Photo(models.Model):
    
 
     def __str__(self):
-        return f"Photo of {self.hotel.name}"
+        return f"Photo of {self.hotel.room_number}"
+    
+    
+    
+    
+class Review(models.Model):
+    hotel_room = models.ForeignKey(HotelRoom, on_delete=models.CASCADE, related_name='reviews')
+    title = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    review = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review by {self.name} on {self.hotel_room.room_number}"    

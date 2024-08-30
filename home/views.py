@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from core.models import Category,HotelRoom,Booking,Payment
+from core.models import Category,HotelRoom,Booking,Payment,Photo,Amenity
 from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
@@ -213,5 +213,11 @@ def privacy(requset):
 
 
 
-def details(request):
-    return render(request,'home/details.html')
+def details(request,id):
+    room=HotelRoom.objects.get(id=id)
+    photos=Photo.objects.filter(hotel=room)
+    context={
+        'photos':photos,
+        'room':room
+    }
+    return render(request,'home/details.html',context)
