@@ -374,9 +374,42 @@ def add_photos(request):
     return render(request,'Admin/add_photos.html',context)    
 
 
-
-def edit_photos(request,id):
-    pass
+def edit_photos(request, id):
+    photo = Photo.objects.get(id=id)
+    
+    if request.method == "POST":
+        room_id = request.POST.get('room')
+        hotel_room = HotelRoom.objects.get(id=room_id)
+        
+        # Get the current image if no new image is uploaded
+        current_image = request.FILES.get('current_image')
+        
+        print('curent',current_image)
+       
+        
+        # Get the new image if uploaded
+        new_photo = request.FILES.get('photos')
+        photo.hotel = hotel_room
+        
+        if new_photo:
+            photo.image = new_photo
+        else:
+            if current_image:
+                photo.image = current_image
+        
+        photo.save()
+        print('saved')
+        return redirect('hotel_photos')
+    else:
+        hotel = HotelRoom.objects.all().order_by('-id')
+        
+        context = {
+            'photo': photo,
+            'hotels': hotel,
+            'id': id,
+            'edit': True
+        }
+        return render(request, 'Admin/edit_photo.html', context)
 
 
 def delete_photos(request,id):

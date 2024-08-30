@@ -104,7 +104,7 @@ class Payment(models.Model):
 
 class Photo(models.Model):
     hotel = models.ForeignKey(HotelRoom, on_delete=models.CASCADE, related_name='photos')
-    image = models.ImageField(upload_to='hotel_photos/')
+    image = models.FileField(upload_to='hotel_photos/')
     created_at=models.DateTimeField(auto_now=True)
    
 

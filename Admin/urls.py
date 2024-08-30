@@ -38,7 +38,8 @@ urlpatterns = [
     # for photos
     path('hotel_photos/',views.hotel_photos,name='hotel_photos'),
     path('add_photos/',views.add_photos,name='add_photos'),
-    path('delete_photos/<int:id>/',views.delete_photos,name='delete_photos')
+    path('delete_photos/<int:id>/',views.delete_photos,name='delete_photos'),
+    path('edit_photos/<int:id>/',views.edit_photos,name='edit_photo')
 
     
     
