@@ -27,3 +27,4 @@ admin.site.register(Booking,bookingAdmin)
 
 admin.site.register(Payment)
 admin.site.register(Photo)
+admin.site.register(Review)

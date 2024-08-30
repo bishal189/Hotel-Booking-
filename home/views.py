@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
-from core.models import Category,HotelRoom,Booking,Payment,Photo,Amenity
+from core.models import Category,HotelRoom,Booking,Payment,Photo,Amenity,Review
 from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
 import json
+from django.urls import reverse
+
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
@@ -216,8 +218,33 @@ def privacy(requset):
 def details(request,id):
     room=HotelRoom.objects.get(id=id)
     photos=Photo.objects.filter(hotel=room)
+    reviews=Review.objects.filter(hotel_room=room)
     context={
         'photos':photos,
-        'room':room
+        'room':room,
+        'id':id,
+        'reviews':reviews
     }
     return render(request,'home/details.html',context)
+
+@login_required
+def review(request,id):
+    if request.method=="POST":
+        title=request.POST.get('title')
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        review=request.POST.get('review')
+        hotel_room=HotelRoom.objects.get(id=id)
+        
+        Review.objects.create(
+            title=title,
+            name=name,
+            email=email,
+            review=review,
+            hotel_room=hotel_room,
+            user=request.user
+            
+        )
+        
+        return redirect(reverse('details',kwargs={'id':id}))
+   

@@ -119,6 +119,7 @@ class Review(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     review = models.TextField()
+    user=models.ForeignKey(Account,on_delete=models.CASCADE,blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
