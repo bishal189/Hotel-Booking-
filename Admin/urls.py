@@ -32,7 +32,13 @@ urlpatterns = [
     # for toogle 
     
     path('toggle-room-status/',views.toggle_room_status,name='toggle_room'),
-    path('book-room/',views.book_room,name='book_room')
+    path('book-room/',views.book_room,name='book_room'),
+    
+    
+    # for photos
+    path('hotel_photos/',views.hotel_photos,name='hotel_photos'),
+    path('add_photos/',views.add_photos,name='add_photos'),
+    path('delete_photos/<int:id>/',views.delete_photos,name='delete_photos')
 
     
     

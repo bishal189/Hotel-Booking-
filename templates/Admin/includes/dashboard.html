@@ -22,6 +22,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{% url 'hotel_photos' %}" class="{% if request.path == '/admins/hotel_photos/' %}active{% endif %}"><i class="fe fe-file-text"></i> 
+                                <span>Hotel photos</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{% url 'category_admin' %}" class="{% if request.path == '/admins/category/' %}active{% endif %}"><i class="fe fe-clipboard"></i> <span>Categories</span></a>
                         </li>
                        

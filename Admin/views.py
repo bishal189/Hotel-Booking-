@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from auths.models import Account
-from core.models import HotelRoom,Booking,Category,Amenity,Payment
+from core.models import HotelRoom,Booking,Category,Amenity,Payment,Photo
 from decimal import Decimal
 
 
@@ -344,3 +344,32 @@ def book_room(request):
         'rooms':rooms
     }
     return render(request,'Admin/book_room.html',context)    
+
+
+
+def hotel_photos(request):
+    photos=Photo.objects.all().order_by('-id')
+    context={
+        'photos':photos
+    }
+    return render(request,'Admin/photos.html',context)    
+
+
+def add_photos(request):
+    pass
+
+
+def edit_photos(request,id):
+    pass
+
+
+def delete_photos(request,id):
+    try:
+        photo=Photo.objects.get(id=id)
+        photo.delete()
+        return redirect('hotel_photos')
+    
+    
+    except:
+        pass
+        
