@@ -40,11 +40,11 @@
                                     {% for item in book %}									 
                                      <tr>
 									     <td>
-										    <div class="listingtable-img"> <a href="service-details.html"><img class="img-fluid avatar-img" src="{{item.room.hotel_images.url}}" alt=""></a></div>
+										    <div class="listingtable-img"> <a href="{% url 'details' item.room.id %}"><img class="img-fluid avatar-img" src="{{item.room.hotel_images.url}}" alt=""></a></div>
 										 </td>
 									     <td>
-										     <h6><a href="service-details.html">{{item.room.room_number}}</a></h6>
-										     <h6><a href="service-details.html">{{item.room.room_type}}</a></h6>
+										     <h6><a href="{% url 'details' item.room.id %}">{{item.room.room_number}}</a></h6>
+										     <h6><a href="{% url 'details' item.room.id %}">{{item.room.room_type}}</a></h6>
 										     <div class="listingtable-rate"><a href="javascript:void(0)" class="cat-icon"><i class="fa-regular fa-circle-stop"></i> {{item.room.category.name}}</a> <span class="fixed-amt">€{{item.room.price_per_night}}</span></div>
 					
 										 </td>
