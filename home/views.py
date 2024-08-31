@@ -1,11 +1,13 @@
 from django.shortcuts import render,redirect
 from core.models import Category,HotelRoom,Booking,Payment,Photo,Amenity,Review
+from home.models import BookMark
 from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
 import json
 from django.urls import reverse
-
+from django.shortcuts import get_object_or_404, render
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
@@ -18,12 +20,22 @@ def home(request):
     
     hotel_room=HotelRoom.objects.all().order_by('-id')
     reviews=Review.objects.all().order_by('-id')[:10]
- 
+    if request.user.is_authenticated:
+            bookmarked_product_ids = BookMark.objects.filter(
+                user=request.user
+            ).values_list("product_id", flat=True)
+    else:
+        bookmarked_product_ids = []
+        
+        
+    print(bookmarked_product_ids,'ids=========+++++++++>')    
+
     context={
         'category':category,
         'hotel_room':hotel_room,
         'home':True,
-        'reviews':reviews
+        'reviews':reviews,
+        'book_mark':bookmarked_product_ids
     }
     return render(request,'home/home.html',context)
 
@@ -250,3 +262,42 @@ def review(request,id):
         
         return redirect(reverse('details',kwargs={'id':id}))
    
+   
+
+
+
+@login_required(login_url="/account/login/")
+@csrf_exempt
+def toggle_bookmark(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            product_id = data.get("id")
+            print(data,'============++++>')
+            product = get_object_or_404(HotelRoom, id=product_id)
+            bookmark, created = BookMark.objects.get_or_create(
+                user=request.user,
+                product=product
+            )
+
+            if not created:
+                bookmark.delete()
+                return JsonResponse({"success": True})
+
+            return JsonResponse({"success": True})
+
+        except json.JSONDecodeError:
+            return JsonResponse({"success": False, "error": "Invalid JSON"}, status=400)   
+        
+        
+        
+
+
+def book_marks(request):
+    book_mark=BookMark.objects.filter(user=request.user)
+    book_mark_ids=BookMark.objects.filter(user=request.user).values_list("product_id", flat=True)
+    context={
+        'book_marks':book_mark,
+        'book_mark_ids':book_mark_ids
+    }
+    return render(request,'home/book_mark.html',context)        

@@ -131,12 +131,17 @@
                                         <a href="{% url 'details' hotelroom.id  %}">
                                             <img src="{{ hotelroom.hotel_images.url }}" class="img-fluid" alt="blog-img">
                                         </a>
-                                        <div class="fav-item">
-                                            <span class="featured-text">Available</span>
-                                            <a href="javascript:void(0)" class="fav-icon">
-                                                <i class="feather-heart"></i>
-                                            </a>
-                                        </div>
+                                        <div class="fav-item" data-id="{{ hotelroom.id }}">
+											<span class="featured-text">Featured</span>
+											<a href="javascript:void(0)" class="fav-icon">
+												<i class="feather-heart {% if hotelroom.id in book_mark %}fav{% endif %}"></i>
+											</a>	
+											
+											
+											
+										</div>
+										
+										<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                     </div>
                                     <div class="bloglist-content">
                                         <div class="card-body">
@@ -219,12 +224,17 @@
                                             <a href="{% url 'details' room.id %}">
                                                 <img src="{{room.hotel_images.url}}" class="img-fluid" alt="blog-img">
                                             </a>
-                                            <div class="fav-item">
+                                            <div class="fav-item" data-id="{{ room.id }}">
                                                 <span class="featured-text">Featured</span>
                                                 <a href="javascript:void(0)" class="fav-icon">
-                                                    <i class="feather-heart"></i>
-                                                </a>										
-                                            </div>	
+                                                    <i class="feather-heart {% if room.id in book_mark %}fav{% endif %}"></i>
+                                                </a>	
+                                                
+                                                
+                                                
+                                            </div>
+                                            
+                                            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                         </div>
                                         <div class="bloglist-content">
                                             <div class="card-body">
@@ -534,6 +544,45 @@
         {% include 'includes/footer.html' %}
 		<!-- /Footer -->
 
+
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		document.querySelectorAll('.fav-icon').forEach(function(icon) {
+			icon.addEventListener('click', function() {
+				var itemId = this.closest('.fav-item').getAttribute('data-id');
+				var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+	
+				fetch('/toggle-bookmark/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'X-CSRFToken': csrftoken 
+					},
+					body: JSON.stringify({ id: itemId })
+				})
+				.then(response => {
+					if (response.redirected) {
+						// If the response is redirected, navigate to the login page
+						window.location.href = response.url;
+					} else {
+						return response.json();
+					}
+				})
+				.then(data => {
+					console.log(data, 'data');
+					if (data.success) {
+						this.querySelector('i').classList.toggle('favorited');  // Change icon state
+					} else {
+						console.error('Failed to favorite item.');
+					}
+				})
+				.catch(error => console.error('Error:', error));
+			});
+		});
+	});
+	
+</script>	
 	</div>
 
 	

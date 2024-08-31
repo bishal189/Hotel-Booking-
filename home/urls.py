@@ -18,4 +18,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('details/<int:id>/', views.details, name='details'),
     path('review/<int:id>/', views.review, name='review'),
+    path("toggle-bookmark/", views.toggle_bookmark, name="toggle_bookmark"),
+    path("bookmark/", views.book_marks, name="book_marks"),
 ]
