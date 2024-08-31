@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from auths.models import Account
 from core.models import HotelRoom,Booking,Category,Amenity,Payment,Photo
+from home.models import Contact
 from decimal import Decimal
 
 
@@ -421,3 +422,25 @@ def delete_photos(request,id):
     except:
         pass
         
+        
+def all_contact(request):
+    contact=Contact.objects.all().order_by('-id')
+    context={
+        'contacts':contact
+    }        
+    
+    return render(request,'Admin/contact.html',context)
+
+
+
+
+def delete_contact(request,id):
+    try:
+        contact=Contact.objects.get(id=id)
+        contact.delete()
+        return redirect('all_contact')
+    
+    
+    except:
+        pass
+    

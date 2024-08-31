@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from core.models import Category,HotelRoom,Booking,Payment,Photo,Amenity,Review
-from home.models import BookMark
+from home.models import BookMark,Contact
 from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
@@ -220,7 +220,32 @@ def terms(request):
 
 
 def contact(request):
-    return render(request,'company/contact.html')
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        if request.user:
+            Contact.objects.create(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message,
+                user=request.user,
+            )
+        else:
+            Contact.objects.create(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message,
+            )
+
+        return redirect('contact')
+
+    return render(request, 'company/contact.html')
+
 
 
 def privacy(requset):

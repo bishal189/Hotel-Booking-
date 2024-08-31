@@ -17,6 +17,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{% url 'all_contact' %}"  class="{% if request.path == '/admins/all_contact/' %}active{% endif %}" ><i class="fe fe-briefcase"></i> 
+                                <span>All Contact </span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{% url 'admin_category' %}" class="{% if request.path == '/admins/rooms/' %}active{% endif %}"><i class="fe fe-file-text"></i> 
                                 <span>Hotel Room</span>
                             </a>
