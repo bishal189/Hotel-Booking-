@@ -48,10 +48,10 @@
 		<!--Galler Slider Section-->
 		<div class="bannergallery-section">
             <div class="gallery-slider d-flex">
-				{% for item in photos %}
+				{% for item in photo %}
                 <div class="gallery-widget">
-                    <a href="{% static 'assets/img/gallery/gallery1/gallery-1.jpg' %}" data-fancybox="gallery1">
-                        <img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-1.jpg' %}">
+                    <a href="{{item.image.url}}" data-fancybox="gallery1">
+                        <img class="img-fluid" alt="Image" src="{{item.image.url}}">
                     </a>
                 </div>
 				{% endfor%}

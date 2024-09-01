@@ -258,11 +258,14 @@ def details(request,id):
     room=HotelRoom.objects.get(id=id)
     photos=Photo.objects.filter(hotel=room)
     reviews=Review.objects.filter(hotel_room=room)
+    photo=Photo.objects.filter(hotel=room)[:5]
+    print(photos,'photos')
     context={
         'photos':photos,
         'room':room,
         'id':id,
-        'reviews':reviews
+        'reviews':reviews,
+        'photo':photo
     }
     return render(request,'home/details.html',context)
 
@@ -317,7 +320,7 @@ def toggle_bookmark(request):
         
         
 
-
+@login_required
 def book_marks(request):
     book_mark=BookMark.objects.filter(user=request.user)
     book_mark_ids=BookMark.objects.filter(user=request.user).values_list("product_id", flat=True)
