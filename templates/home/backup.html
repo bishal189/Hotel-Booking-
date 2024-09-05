@@ -1,36 +1,37 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Listee | Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Listee | Template</title>
 
-	<!-- Favicon -->
+    <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
-	
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
 
-	<!-- Fontawesome CSS -->
-	<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
-	
-	<!-- Select2 CSS -->
-	<link rel="stylesheet" href="{% static 'assets/plugins/select2/css/select2.min.css' %}">
-	
-	<!-- Aos CSS -->
-	<link rel="stylesheet" href="{% static 'assets/plugins/aos/aos.css' %}">
-	
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
+    
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/select2/css/select2.min.css' %}">
+    
+    <!-- Aos CSS -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/aos/aos.css' %}">
+    
     <!-- Feather CSS -->
-	<link rel="stylesheet" href="{% static 'assets/css/feather.css' %}">
-		
-	<!-- Fancybox CSS -->
-	<link rel="stylesheet" href="{% static 'assets/plugins/fancybox/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/feather.css' %}">
+    
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/fancybox/jquery.fancybox.min.css' %}">
 
-	<!-- Main CSS -->
-	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-	
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    
 </head>
 
 <body>
@@ -45,35 +46,22 @@
 		<!-- /Header -->
 		
 		<!--Galler Slider Section-->
-
 		<div class="bannergallery-section">
-			<div class="gallery-slider d-flex">
-				<div class="gallery-widget">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-1.jpg' %}" data-fancybox="gallery1">
-						<img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-1.jpg' %}">
-					</a>
-				</div>	
-				<div class="gallery-widget">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-2.jpg' %}" data-fancybox="gallery1">
-						<img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-2.jpg' %}">
-					</a>
-				</div>								
-				<div class="gallery-widget">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-3.jpg' %}" data-fancybox="gallery1">
-						<img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-3.jpg' %}">
-					</a>
-				</div>	
-				<div class="gallery-widget">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-4.jpg' %}" data-fancybox="gallery1">
-						<img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-4.jpg' %}">
-					</a>
-				</div>			
-				<div class="showphotos">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-3.jpg' %}" data-fancybox="gallery1">... Show Photos</a>
-				</div>								
-			</div>			
-		</div>	
-
+            <div class="gallery-slider d-flex">
+				{% for item in photo %}
+                <div class="gallery-widget">
+                    <a href="{{item.image.url}}" data-fancybox="gallery1">
+                        <img class="img-fluid" alt="Image" src="{{item.image.url}}">
+                    </a>
+                </div>
+				{% endfor%}
+ 
+                <div class="showphotos">
+                    <a href="{% static 'assets/img/gallery/gallery1/gallery-3.jpg' %}" data-fancybox="gallery1">... Show Photos</a>
+                </div>
+            </div>
+        </div>
+            
 		<!--/Galler Slider Section-->
 		
 		<!--Details Description  Section-->
@@ -297,7 +285,7 @@
 					
 				</div>
 			</div>		
-		</div>			
+		</div>		
 		<!-- /Details Main Section -->
 		
 	    <!-- Footer -->
@@ -314,34 +302,34 @@
 	</div>
 	<!-- scrollToTop end -->
 	
-	
-	<!-- jQuery -->
-<script src="{% static 'assets/js/jquery-3.7.0.min.js' %}"></script>
+	  <!-- jQuery -->
+      <script src="{% static 'assets/js/jquery-3.7.0.min.js' %}"></script>
 
-<!-- Bootstrap Core JS -->
-<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
-
-<!-- Select2 JS -->
-<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
-
-<!-- Aos -->
-<script src="{% static 'assets/plugins/aos/aos.js' %}"></script>
-
-<!-- Feather JS -->
-<script src="{% static 'assets/js/feather.min.js' %}"></script>
-
-<!-- Top JS -->
-<script src="{% static 'assets/js/backToTop.js' %}"></script>
-
-<!-- Sticky Sidebar JS -->
-<script src="{% static 'assets/plugins/theia-sticky-sidebar/ResizeSensor.js' %}"></script>
-<script src="{% static 'assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js' %}"></script>
-
-<!-- Fancybox JS -->
-<script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}"></script>
-
-<!-- Custom JS -->
-<script src="{% static 'assets/js/script.js' %}"></script>
-
-</body>
-</html>
+      <!-- Bootstrap Core JS -->
+      <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+      
+      <!-- Select2 JS -->
+      <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+      
+      <!-- Aos -->
+      <script src="{% static 'assets/plugins/aos/aos.js' %}"></script>
+      
+      <!-- Feather JS -->
+      <script src="{% static 'assets/js/feather.min.js' %}"></script>
+      
+      <!-- Top JS -->
+      <script src="{% static 'assets/js/backToTop.js' %}"></script>
+      
+      <!-- Sticky Sidebar JS -->
+      <script src="{% static 'assets/plugins/theia-sticky-sidebar/ResizeSensor.js' %}"></script>
+      <script src="{% static 'assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js' %}"></script>
+      
+      <!-- Fancybox JS -->
+      <script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}"></script>
+      
+      <!-- Custom JS -->
+      <script src="{% static 'assets/js/script.js' %}"></script>
+      
+  </body>
+  </html>
+  
