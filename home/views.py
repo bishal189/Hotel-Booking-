@@ -11,6 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
+from django.core.paginator import Paginator
+
 
 
 def home(request):
@@ -28,7 +30,6 @@ def home(request):
         bookmarked_product_ids = []
         
         
-    print(bookmarked_product_ids,'ids=========+++++++++>')    
 
     context={
         'category':category,
@@ -40,24 +41,44 @@ def home(request):
     return render(request,'home/home.html',context)
 
 
-def all_rooms(request):
-    hotel_room=HotelRoom.objects.all().order_by('-id')
-    book=Booking.objects.all()
-    rooms_with_status = []
 
-    for room in hotel_room:
-        is_booked = Booking.objects.filter(room=room).exists() 
+def all_rooms(request):
+    hotel_room = HotelRoom.objects.all().order_by('-id')
+    book = Booking.objects.all()
+    features = Amenity.objects.all()  
+
+    selected_features = request.GET.getlist('feature') 
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+
+    if selected_features:
+        hotel_room = hotel_room.filter(amenities__name__in=selected_features).distinct()
+
+    if min_price:
+        hotel_room = hotel_room.filter(price_per_night__gte=min_price)
+    if max_price:
+        hotel_room = hotel_room.filter(price_per_night__lte=max_price)
+
+    paginator = Paginator(hotel_room, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    rooms_with_status = []
+    for room in page_obj: 
+        is_booked = Booking.objects.filter(room=room).exists()
         rooms_with_status.append({
             'room': room,
             'is_booked': is_booked
         })
-      
-    context={
-        'hotel_room':hotel_room,
-        'book':book,
+
+    context = {
+        'hotel_room': page_obj, 
+        'book': book,
         'rooms_with_status': rooms_with_status,
-    } 
-    return render(request,'home/listing.html',context)
+        'features': features,  
+        'page_obj':page_obj
+    }
+    return render(request, 'home/listing.html', context)
 
 
 
@@ -329,3 +350,5 @@ def book_marks(request):
         'book_mark_ids':book_mark_ids
     }
     return render(request,'home/book_mark.html',context)        
+
+

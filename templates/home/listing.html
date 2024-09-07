@@ -37,79 +37,33 @@
 			            <div class="listings-sidebar">
 						    <div class="card">
 				                <h4><img  src="{% static 'assets/img/details-icon.svg' %}" alt="details-icon"> Filter</h4>
-							    <form>
-								    <div class="filter-content looking-input form-group">
-									  <input type="text" class="form-control" placeholder="What are you looking for?">
-									</div> 
-									<div class="filter-content form-group">  
-									   <select class="form-control select category-select">
-									    	<option value="">Choose Category</option>
-											<option>Computer</option>
-											<option>Electronics</option>
-											<option>Car wash</option>
-										</select>
-									</div>
-									<div class="filter-content looking-input form-group input-placeholder">
-										<div class="group-img">
-										  <input type="text" class="form-control" placeholder="Where to look?">
-										  <i class="feather-map-pin"></i>
-									    </div>
-									</div>
-									<div class="filter-content form-group region">
-									    <select class="form-control select region-select">
-											<option value="">Region</option>
-											<option>Canada</option>
-											<option>USA</option>
-											<option>india</option>
-										</select>						  
-									</div>
+							    <form action='{% url 'all_rooms' %}' method='GET' >
+								   
+
+									
+									
 									<div class="filter-content form-group amenities">
 									    <h4> Amenities</h4>
 										<ul>
+
+											{% for feature in features %}
 											<li>
 												<label class="custom_check">
-												<input type="checkbox" name="wireless-internet">
-												<span class="checkmark"></span> Wireless Internet
+												<input type="checkbox" name="feature">
+												<span class="checkmark"></span>{{feature.name}}
 												</label>
 											</li>
-											<li>
-												<label class="custom_check">
-												<input type="checkbox" name="accept-credit-card">
-												<span class="checkmark"></span> Accepts Credit Cards 
-										    	 </label>
-											</li>
-											<li>
-												<label class="custom_check">
-												<input type="checkbox" name="Coupouns">
-												<span class="checkmark"></span> Coupouns
-										        </label>
-											</li>
-											<li>
-												<label class="custom_check">
-												<input type="checkbox" name="parking-street">
-												<span class="checkmark"></span> Parking Street
-												</label>
-											</li>
-											<li>
-												<label class="custom_check">
-												<input type="checkbox" name="bike-parking">
-												<span class="checkmark"></span> Bike Parking
-												</label>
-											</li>
-											<li>
-												<label class="custom_check">
-												<input type="checkbox" name="Smoking-Allowed">
-												<span class="checkmark"></span> Smoking Allowed
-												</label>
-											</li>
+											{% endfor %}
+											
+											
 										</ul>
 									</div>
 																	
 									<div class="filter-content amenities mb-0">
     									<h4> Price Range</h4>
 										<div class="form-group mb-0">
-										     <input type="text" class="form-control" placeholder="Min">
-										     <input type="text" class="form-control me-0" placeholder="Max">
+										     <input type="text" class="form-control" placeholder="Min" name='min_price'>
+										     <input type="text" class="form-control me-0" placeholder="Max" name='max_price'>
 										</div>
 										<div class="search-btn">
 											<button class="btn btn-primary" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> Search</button>
@@ -225,36 +179,50 @@
 						<div class="listing-pagination">
 							<nav>
 								<ul class="pagination">
-									<li class="page-item previtem">
-										<a class="page-link" href="#"><i class="fas fa-regular fa-arrow-left"></i> Prev</a>
-									</li>
-									<li class="justify-content-center pagination-center"> 
+									<!-- Previous page link -->
+									{% if page_obj.has_previous %}
+										<li class="page-item previtem">
+											<a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-regular fa-arrow-left"></i> Prev</a>
+										</li>
+									{% else %}
+										<li class="page-item previtem disabled">
+											<a class="page-link" href="#"><i class="fas fa-regular fa-arrow-left"></i> Prev</a>
+										</li>
+									{% endif %}
+						
+									<li class="justify-content-center pagination-center">
 										<div class="pagelink">
 											<ul>
-												<li class="page-item">
-													<a class="page-link" href="#">1</a>
-												</li>
-												<li class="page-item">
-													<a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
-												</li>
-												<li class="page-item active">
-													<a class="page-link" href="#">3</a>
-											</li>
-											<li class="page-item">
-													<a class="page-link" href="#">4</a>
-											</li>
-											<li class="page-item">
-													<a class="page-link" href="#">5</a>
-											</li>
-										</ul>
-										</div>													
-									</li>													
-									<li class="page-item nextlink">
-										<a class="page-link" href="#">Next <i class="fas fa-regular fa-arrow-right"></i></a>
+												<!-- Page numbers -->
+												{% for num in page_obj.paginator.page_range %}
+													{% if page_obj.number == num %}
+														<li class="page-item active">
+															<a class="page-link" href="#">{{ num }}</a>
+														</li>
+													{% else %}
+														<li class="page-item">
+															<a class="page-link" href="?page={{ num }}">{{ num }}</a>
+														</li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+										</div>
 									</li>
+						
+									<!-- Next page link -->
+									{% if page_obj.has_next %}
+										<li class="page-item nextlink">
+											<a class="page-link" href="?page={{ page_obj.next_page_number }}">Next <i class="fas fa-regular fa-arrow-right"></i></a>
+										</li>
+									{% else %}
+										<li class="page-item nextlink disabled">
+											<a class="page-link" href="#">Next <i class="fas fa-regular fa-arrow-right"></i></a>
+										</li>
+									{% endif %}
 								</ul>
 							</nav>
 						</div>
+						
 						<!--/Pagination-->					
 					</div>
 				</div>
