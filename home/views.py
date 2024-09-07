@@ -19,8 +19,9 @@ def home(request):
     category = Category.objects.annotate(
         available_rooms=Count('rooms', filter=Q(rooms__is_available=True))
     ) 
-    
+    feature=Amenity.objects.all().order_by('-id')
     hotel_room=HotelRoom.objects.all().order_by('-id')
+    category=Category.objects.all().order_by('-id')
     reviews=Review.objects.all().order_by('-id')[:10]
     if request.user.is_authenticated:
             bookmarked_product_ids = BookMark.objects.filter(
@@ -36,6 +37,8 @@ def home(request):
         'hotel_room':hotel_room,
         'home':True,
         'reviews':reviews,
+        'feature':feature,
+        'category':category,
         'book_mark':bookmarked_product_ids
     }
     return render(request,'home/home.html',context)
@@ -50,9 +53,13 @@ def all_rooms(request):
     selected_features = request.GET.getlist('feature') 
     min_price = request.GET.get('min_price')
     max_price = request.GET.get('max_price')
+    category = request.GET.get('category')
+    print(category)
 
     if selected_features:
         hotel_room = hotel_room.filter(amenities__name__in=selected_features).distinct()
+    if category:
+        hotel_room = hotel_room.filter(category__name=category)      
 
     if min_price:
         hotel_room = hotel_room.filter(price_per_night__gte=min_price)

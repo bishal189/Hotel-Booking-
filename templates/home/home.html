@@ -27,27 +27,26 @@
                                 <p>Discover the best restaurant.</p>
                                 <h1>Discover Places that People Love</h1>
                                 <div class="search-box search-box-seven">
-                                    <form action="listing-grid-sidebar.html" class="form-block d-flex">
+                                    <form action="{% url 'all_rooms' %}" class="form-block d-flex">
                                         <div class="search-input line">
                                             <div class="form-group mb-0">
-                                                <select class="form-control select category-select">
+                                                <select class="form-control select category-select" name='category'>
                                                     <option value="">Choose Category</option>
-                                                    <option>Computer</option>
-                                                    <option>Automobile</option>
-                                                    <option>Car Wash</option>
-                                                    <option>Cleaning</option>
-                                                    <option>Electrical</option>
-                                                    <option>Construction</option>
+                                                    {% for item in category %}
+                                                    <option value="{{item.name}}">{{item.name}}</option>
+                                                    {% endfor %}
+                                                    
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="search-input line">
                                             <div class="form-group select-location mb-0">
-                                                <select class="form-control select category-select">
-                                                    <option value="">Location</option>
-                                                    <option>USA</option>
-                                                    <option>UK</option>
-                                                    <option>UAE</option>
+                                                <select  class="form-control select category-select" name='max_price' >
+                                                    <option value="">Price</option>
+                                                    <option>50</option>
+                                                    <option>100</option>
+                                                    <option>150</option>
+                                                    <option>200</option>
                                                 </select>
                                                 <i class="feather-map-pin"></i>
                                             </div>
