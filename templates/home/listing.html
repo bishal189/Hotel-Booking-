@@ -19,7 +19,7 @@
 					   <h2 class="breadcrumb-title">Room-List</h2>
 		    		   <nav aria-label="breadcrumb" class="page-breadcrumb">
 						    <ol class="breadcrumb">
-							    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+							    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
 								<li class="breadcrumb-item active" aria-current="page">List</li>
 							</ol>
 						</nav>							
@@ -85,22 +85,26 @@
 							    <div class="sortbyset">
 							        <span class="sortbytitle">Sort by</span>
 									<div class="sorting-select">
-					                    <select class="form-control select">
-							            	<option>Default</option>
-										    <option>Price Low to High</option>
-											<option>Price High to Low</option>
+										
+										<select id="sort-select" class="form-control select" onchange="sortRooms()">
+											<option value="default">Default</option>
+											<option value="price_asc">Price Low to High</option>
+											<option value="price_desc">Price High to Low</option>
 										</select>
+										
+										
+										
                                  	</div>
 								</div>
 								<div class="grid-listview">
 									<ul>
 								    	<li>
-									    	<a href="listing-list-sidebar.html" class="active">
+									    	<a href="#" class="active">
 												<i class="feather-list"></i>
 											</a>
 										</li>
 										<li>
-											<a href="listing-grid-sidebar.html">
+											<a href="#">
 												<i class="feather-grid"></i>
 											</a>
 										</li>
@@ -108,9 +112,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="blog-listview">
+						<div class="blog-listview" id="room-list">
                             {% for room in hotel_room %}
-						    <div class="card">
+						    <div class="card" data-price="{{ room.price_per_night }}">
 						        <div class="blog-widget">
 						            <div class="blog-img">
 								        <a href="service-details.html">
@@ -244,5 +248,32 @@
 	</div>
 	<!-- scrollToTop end -->
 	
+	<script>
+		function sortRooms() {
+			const sortValue = document.getElementById('sort-select').value;
+			const roomList = document.getElementById('room-list');
+			const rooms = Array.from(roomList.getElementsByClassName('card'));
+	
+			rooms.sort((a, b) => {
+				const priceA = parseFloat(a.getAttribute('data-price'));
+				const priceB = parseFloat(b.getAttribute('data-price'));
+	
+				if (sortValue === 'price_asc') {
+					return priceA - priceB;
+				} else if (sortValue === 'price_desc') {
+					return priceB - priceA;
+				} else {
+					// Default sort (by original order)
+					return 0;
+				}
+			});
+	
+			// Clear the room list and re-append sorted rooms
+			roomList.innerHTML = '';
+			rooms.forEach(room => roomList.appendChild(room));
+		}
+	</script>
+	
+		
 	
 	{% endblock %}
