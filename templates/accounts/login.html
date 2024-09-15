@@ -4,6 +4,7 @@
 {% load static %}
 {% block content %}
 	
+{% include 'includes/alert.html' %}
 	<div class="main-wrapper innerpagebg">
 	
 		<!-- Header -->
@@ -75,7 +76,7 @@
 								<div class="register-link text-center">
 									<p>No account yet? <a class="forgot-link" href="{% url 'register' %}">Signup</a></p>
 								</div>
-								<div class="login-or">
+								{% comment %} <div class="login-or">
 									<span class="or-line"></span>
 									<span class="span-or">Sign in with Social Media Accounts</span>
 								</div>					
@@ -84,10 +85,10 @@
 								</div>
 								<div class="social-login">
 									<a href="#" class="btn btn-google w-100"><img src="{% static 'assets/img/google.svg' %}" class="me-1" alt="img">Sign in with Google</a>
-								</div>
-								<div class="social-login">
-									<a href="#" class="btn btn-facebook w-100 mb-0"><img src="{% static 'assets/img/facebook.svg' %}" class="me-2" alt="img">Continue with Facebook</a>
-								</div>								
+								</div> {% endcomment %}
+								{% comment %} <div class="social-login"> {% endcomment %}
+									{% comment %} <a href="#" class="btn btn-facebook w-100 mb-0"><img src="{% static 'assets/img/facebook.svg' %}" class="me-2" alt="img">Continue with Facebook</a>
+								</div>								 {% endcomment %}
 							</form>
 							<!-- /Login Form -->
 											

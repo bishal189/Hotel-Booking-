@@ -33,6 +33,9 @@ def Login(request):
             # except:
             messages.success(request, "You are now logged in.")
             return redirect("home")
+        else:
+            messages.error(request,'Some informations are incorrect!')
+            return render(request, "accounts/login.html")
     else:
         return render(request, "accounts/login.html")
     return render(request, "accounts/login.html")
@@ -41,7 +44,6 @@ def Login(request):
 def Register(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             email = form.cleaned_data["email"]
 
@@ -81,11 +83,13 @@ def Register(request):
             send_email.send()
             messages.success(
                 request,
-                f"Thank you for registering with us. We have sent you a verification email to your email address {email}. Please verify it.",
+                f"sent a verification email .Please verify it.",
             )
             return redirect("register")
         else:
             messages.error(request, "Email address is already registered.")
+            return render(request, "accounts/register.html")
+
 
     else:
 
@@ -142,7 +146,7 @@ def forget_password(request):
             send_email.send()
 
             messages.success(
-                request, "Password reset email has been sent to your email address."
+                request, "Password reset email has been sent!."
             )
             return redirect("login")
 

@@ -5,11 +5,14 @@ from auths.models import Account
 from core.models import HotelRoom,Booking,Category,Amenity,Payment,Photo
 from home.models import Contact
 from decimal import Decimal
+from django.contrib.auth.decorators import user_passes_test
 
+def is_superuser(user):
+    return user.is_superadmin
 
 
 # Create your views here.
-
+@user_passes_test(is_superuser)
 def index(request):
     account=Account.objects.all().order_by('-id')[:5]
     rooms=HotelRoom.objects.all().order_by('-id')[:5]
@@ -34,7 +37,7 @@ def index(request):
     
     return render(request,'Admin/index.html',context)
 
-
+@user_passes_test(is_superuser)
 def Rooms(request):
     
     
@@ -44,7 +47,7 @@ def Rooms(request):
     }
     return render(request,'Admin/category.html',context)
 
-
+@user_passes_test(is_superuser)
 def cat(request):
     category=Category.objects.all().order_by('-id')
     
@@ -54,7 +57,7 @@ def cat(request):
     }
     return render(request,'Admin/cat.html',context)
 
-
+@user_passes_test(is_superuser)
 def features(request):
     features=Amenity.objects.all().order_by('-id')
     
@@ -68,7 +71,7 @@ def features(request):
 
 
 
-
+@user_passes_test(is_superuser)
 def trans(request):
     payment=Payment.objects.all().order_by('-id')
     context={
@@ -77,7 +80,7 @@ def trans(request):
     return render(request,'Admin/trans.html',context)
 
 
-
+@user_passes_test(is_superuser)
 def all_users(request):
     users=Account.objects.all().order_by('-id')
     context={
@@ -88,7 +91,7 @@ def all_users(request):
 
 
 
-
+@user_passes_test(is_superuser)
 def add_room(request):
     if request.method=='POST':
         room_number = request.POST.get('room_number','')
@@ -135,13 +138,13 @@ def add_room(request):
 
 
 
-
+@user_passes_test(is_superuser)
 def delete_room(request,id):
     room=HotelRoom.objects.get(id=id)
     room.delete()
     return redirect('admin_category')
 
-
+@user_passes_test(is_superuser)
 def edit_room(request,id):
     room=HotelRoom.objects.get(id=id)
     if request.method=="POST":
@@ -202,7 +205,7 @@ def edit_room(request,id):
     
     
 # for category 
-
+@user_passes_test(is_superuser)
 def add_category(request):
     if request.method == "POST":
         category_name=request.POST.get('category_name')
@@ -218,14 +221,14 @@ def add_category(request):
     else:
         return render(request,'Admin/add_category.html')
 
-
+@user_passes_test(is_superuser)
 def delete_category(request,id):
     category=Category.objects.get(id=id)   
     category.delete()
     return redirect('category_admin') 
 
 
-    
+@user_passes_test(is_superuser)
 def edit_category(request,id):
     category=Category.objects.get(id=id)
     if request.method=="POST":
@@ -254,7 +257,7 @@ def edit_category(request,id):
     
 # for fatures 
 
-
+@user_passes_test(is_superuser)
 def delete_features(request,id):
     try:
         feature=Amenity.objects.get(id=id)
@@ -264,7 +267,7 @@ def delete_features(request,id):
     except:
         pass
 
-
+@user_passes_test(is_superuser)
 def edit_features(request,id):
     feature=Amenity.objects.get(id=id)
     if request.method=="POST":
@@ -285,7 +288,8 @@ def edit_features(request,id):
             'edit':True
         }
         return render(request,'Admin/edit_feature.html',context)            
-    
+ 
+@user_passes_test(is_superuser)    
 def add_features(request):
     if request.method=='POST':
         name=request.POST.get('feature_name')
@@ -304,7 +308,7 @@ def add_features(request):
     
 # for transition 
 
-
+@user_passes_test(is_superuser)
 def delete_payment(request,id):
     try:
         payment=Payment.objects.get(id=id)
@@ -318,7 +322,7 @@ def delete_payment(request,id):
 
 
 # for toggle booking and is available 
-
+@user_passes_test(is_superuser)
 @require_POST
 def toggle_room_status(request):
     room_id = request.POST.get('room_id')
@@ -338,16 +342,16 @@ def toggle_room_status(request):
         return JsonResponse({'success': False, 'error': 'Room not found'}, status=404)            
     
     
-    
+@user_passes_test(is_superuser)   
 def book_room(request):
-    rooms=HotelRoom.objects.filter(is_booked=True).order_by('-id')
+    rooms = HotelRoom.objects.filter(is_booked=True).order_by('-id')        
     context={
         'rooms':rooms
     }
     return render(request,'Admin/book_room.html',context)    
 
 
-
+@user_passes_test(is_superuser)
 def hotel_photos(request):
     photos=Photo.objects.all().order_by('-id')
     context={
@@ -355,7 +359,7 @@ def hotel_photos(request):
     }
     return render(request,'Admin/photos.html',context)    
 
-
+@user_passes_test(is_superuser)
 def add_photos(request):
     if request.method=="POST":
         room_id=request.POST.get('room')
@@ -374,7 +378,7 @@ def add_photos(request):
     }
     return render(request,'Admin/add_photos.html',context)    
 
-
+@user_passes_test(is_superuser)
 def edit_photos(request, id):
     photo = Photo.objects.get(id=id)
     
@@ -411,7 +415,7 @@ def edit_photos(request, id):
         }
         return render(request, 'Admin/edit_photo.html', context)
 
-
+@user_passes_test(is_superuser)
 def delete_photos(request,id):
     try:
         photo=Photo.objects.get(id=id)
@@ -422,7 +426,7 @@ def delete_photos(request,id):
     except:
         pass
         
-        
+@user_passes_test(is_superuser)        
 def all_contact(request):
     contact=Contact.objects.all().order_by('-id')
     context={
@@ -433,7 +437,7 @@ def all_contact(request):
 
 
 
-
+@user_passes_test(is_superuser)
 def delete_contact(request,id):
     try:
         contact=Contact.objects.get(id=id)
