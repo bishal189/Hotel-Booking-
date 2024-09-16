@@ -7,7 +7,6 @@ class HotelAdmin(admin.ModelAdmin):
 admin.site.register(HotelRoom,HotelAdmin)
 
 
-
 class categoryAdmin(admin.ModelAdmin):
     list_display=['name',]
 

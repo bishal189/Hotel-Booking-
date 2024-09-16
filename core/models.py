@@ -1,6 +1,7 @@
 
 
 from django.db import models
+from django.utils.ipv6 import ValidationError
 from auths.models import Account
 from datetime import timedelta
 from django.utils import timezone
@@ -40,7 +41,7 @@ class HotelRoom(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='rooms')
     amenities = models.ManyToManyField(Amenity, related_name='rooms')
     hotel_images=models.FileField(upload_to='hotelroom/')
-    is_booked=models.BooleanField(default=False)
+    #is_booked=models.BooleanField(default=False)
     description=models.TextField(blank=True,null=True)
     created_at=models.DateTimeField(auto_now=True)
 
@@ -79,9 +80,27 @@ class Booking(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     payment_deadline = models.DateTimeField()
     payment_completed = models.BooleanField(default=False) 
+    
+    def clean(self):
+        # Ensure check-in date is before check-out date
+        if self.check_in_date >= self.check_out_date:
+            raise ValidationError('Check-in date must be before check-out date.')
+
+        # Check for overlapping bookings in the same room
+        overlapping_bookings = Booking.objects.filter(
+            room=self.room,
+            check_in_date__lt=self.check_out_date,  # Booking's check-in must be before the current booking's check-out
+            check_out_date__gt=self.check_in_date  # Booking's check-out must be after the current booking's check-in
+        ).exclude(id=self.id)  
+
+        if overlapping_bookings.exists():
+            raise ValidationError('This room is already booked for the selected dates.')
+
+    def save(self, *args, **kwargs):
+        self.clean()  
+        super().save(*args, **kwargs)
 
 
-   
     def __str__(self):
         return f'Booking for {self.guest_name} in Room {self.room.room_number}'
 
