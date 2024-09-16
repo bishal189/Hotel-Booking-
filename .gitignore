@@ -23,7 +23,7 @@ env
 
 
 # SQLite database files
-*.sqlite3
+
 
 # Django cache files
 **/cache/
