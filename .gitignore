@@ -18,6 +18,7 @@ __pycache__/
 # Environment variables file
 .env
 
+env
 # Django static files
 staticfiles/
 static/
