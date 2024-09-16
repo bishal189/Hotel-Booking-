@@ -13,10 +13,10 @@
             <div class="sidebar-header">
                 <div class="sidebar-logo">
                     <a href="{% url 'admin_index' %}">
-                        <img src="{% static 'admin/assets/img/logo.svg' %}" class="img-fluid logo" alt="">
+                        <img src="{% static 'hotel.jpeg' %}" class="img-fluid logo" alt="">
                     </a>
                     <a href="{% url 'admin_index' %}">
-                        <img src="{% static 'admin/assets/img/logo-small.svg' %}" class="img-fluid logo-small" alt="">
+                        <img src="{% static 'hotel.jpeg' %}" class="img-fluid logo-small" alt="">
                     </a>
                 </div>
                 <div class="siderbar-toggle">
@@ -65,6 +65,7 @@
                                         <th>Category</th>
                                         <th>check-In Date</th>
                                         <th>check-Out Date</th>
+                                        <th>Payed</th>
                                         <th>Featured</th>
                                         <th>Is Booked?</th>
                                         <th>Action</th>
@@ -76,19 +77,25 @@
                                         <td>{{forloop.counter}}</td>
                                         <td>
                                             <div class="table-imgname">
-                                                <img src="{{room.hotel_images.url}}" class="me-2" alt="img">
-                                                <span>{{room.room_number}}</span>
+                                                <img src="{{room.room.hotel_images.url}}" class="me-2" alt="img">
+                                                <span>{{room.room.room_number}}</span>
                                             </div>
                                         </td>
-                                        <td>{{room.category.name}}</td>
-                                        <td>{{room.booking.check_in_date}}</td>
-                                        <td>{{room.booking.check_out_date}}</td>
+                                        <td>{{room.room.category.name}}</td>
+                                        <td>{{room.check_in_date}}</td>
+                                        <td>{{room.check_out_date}}</td>
+                                        {% if room.payment_completed %}
+                                        <td> <span class='badge-active'>Payed</span></td>
+                                        {% else %}
+                                        <td> <span class='badge-delete'>Un Payed</span></td>
+
+                                        {% endif %}
                                         
                                       
                                         <td>
                                             <div class="active-switch"  style="cursor: pointer;">
                                                 <label class="switch"  style="cursor: pointer;">
-                                                    <input data-room-id="{{ room.id }}" data-status-type="is_available" type="checkbox" {% if room.is_available %}checked{% endif %}>
+                                                    <input data-room-id="{{ room.room.id }}" data-status-type="is_available" type="checkbox" {% if room.is_available %}checked{% endif %}>
                                                     <span class="sliders round" style="cursor: pointer;"></span>
                                                 </label>
                                             </div>
@@ -97,7 +104,7 @@
                                         <td>
                                             <div class="active-switch"  style="cursor: pointer;">
                                                 <label class="switch"  style="cursor: pointer;">
-                                                    <input data-room-id="{{ room.id }}" data-status-type="is_booked" type="checkbox" {% if room.is_booked %}checked{% endif %}>
+                                                    <input data-room-id="{{ room.room.id }}" data-status-type="is_booked" type="checkbox" {% if room.is_booked %}checked{% endif %}>
                                                     <span class="sliders round" style="cursor: pointer;"></span>
                                                 </label>
                                             </div>
@@ -105,10 +112,10 @@
                                       
                                         <td>
                                             <div class="table-actions d-flex">
-                                                <a class="delete-table me-2" href="{% url 'edit_room' room.id %}" >
+                                                <a class="delete-table me-2" href="{% url 'edit_room' room.room.id %}" >
                                                    <img src="{% static 'admin/assets/img/icons/edit.svg' %}" alt="svg">
                                                 </a>
-                                                <a class="delete-table" href="javascript:void(0);" onclick="confirmDelete({{ room.id }})">
+                                                <a class="delete-table" href="javascript:void(0);" onclick="confirmDelete({{ room.room.id }})">
                                                 <img src="{% static 'admin/assets/img/icons/delete.svg' %}" alt="svg">
                                                 </a>
                                             </div>

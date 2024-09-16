@@ -344,7 +344,7 @@ def toggle_room_status(request):
     
 @user_passes_test(is_superuser)   
 def book_room(request):
-    rooms = HotelRoom.objects.filter(is_booked=True).order_by('-id')        
+    rooms =Booking.objects.all().order_by('-id')      
     context={
         'rooms':rooms
     }

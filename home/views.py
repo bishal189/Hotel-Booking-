@@ -210,7 +210,8 @@ def payments(request):
         payment_method=body['payment_method'],
         amount=body['amount'],
         payment_status=body['status'],
-        booking=book
+        booking=book,
+        
 
 
 
