@@ -20,11 +20,7 @@ __pycache__/
 
 env
 # Django static files
-staticfiles/
-static/
 
-# Media files
-media/
 
 # SQLite database files
 *.sqlite3
