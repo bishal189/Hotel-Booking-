@@ -73,10 +73,9 @@ def all_rooms(request):
 
     rooms_with_status = []
     for room in page_obj: 
-        is_booked = Booking.objects.filter(room=room).exists()
         rooms_with_status.append({
             'room': room,
-            'is_booked': is_booked
+            'is_booked': False
         })
 
     context = {
