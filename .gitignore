@@ -27,7 +27,7 @@ staticfiles/
 #media/
 
 # SQLite database files
-*.sqlite3
+
 
 # Django cache files
 **/cache/
