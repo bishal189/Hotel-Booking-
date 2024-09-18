@@ -1,10 +1,26 @@
 
 {% load static %}
+<style>
+.hamburger-icon {
+    display: inline-block;
+    cursor: pointer;
+    z-index: 10000; /* Adjust if needed */
+}
+
+.hamburger-icon span {
+    display: block;
+    width: 30px; /* Width of the bars */
+    height: 3px;  /* Height of each bar */
+    margin: 5px 0; /* Spacing between the bars */
+    background-color: black; /* Color of the bars */
+    transition: all 0.3s ease; /* Smooth animation */
+}
+</style>
 <div class="container">
     <nav class="navbar navbar-expand-lg header-nav">
         <div class="navbar-header">
             <a id="mobile_btn" href="javascript:void(0);">
-                <span class="bar-icon">
+                <span style="color:black;z-index:10000;"  class="hamburger-icon">
                     <span></span>
                     <span></span>
                     <span></span>
