@@ -28,9 +28,11 @@
                 </li>
              
               
-                <li><a href="{% url 'book_marks' %}" style='color: #374b5c;'>Book Mark</a></li>
+                <li><a href="{% url 'book_marks' %}" style='color: #374b5c;'>Bookmarks</a></li>
                 <li><a href="{% url 'dashboard' %}" style='color: #374b5c;'>My Booking</a></li>
-                <li><a href="{% url 'contact' %}" style='color: #374b5c;'>Contact</a></li>
+                <li><a href="{% url 'contact' %}" style='color: #374b5c;'>Map</a></li>
+                <li><a href="{% url 'contact' %}" style='color: #374b5c;'>Contact us</a></li>
+                <li><a href="https://www.google.com/maps/@26.6517387,87.9040476,15z?entry=ttu&g_ep=EgoyMDI0MDkyMy4wIKXMDSoASAFQAw%3D%3D"  target="_blank" style='color: #374b5c;'>Location</a></li>
 
                 {% if user.is_superadmin %}
                 <li><a href="{% url 'admin_index' %}" target="_blank" style='color: #374b5c;'>Admin</a></li>

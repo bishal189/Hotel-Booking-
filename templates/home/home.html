@@ -7,6 +7,7 @@
 {% include 'includes/alert.html' %}
 
 	<div class="main-wrapper">
+       
 		<!-- Header -->
 		<header class="header header-four header-seven" style="background-color: #ffffff;box-shadow: 0px 3px 53px rgba(197, 197, 197, 0.27);">
 			{% include 'includes/header1.html' %}
@@ -14,7 +15,9 @@
 		<!-- /Header -->
 
 
-        
+        <!--msg-->
+
+        <!----msg---->
 		<!-- Banner Section -->
 		
 
@@ -86,12 +89,7 @@
                             <img src="{% static 'assets/img/bg/banner-bottom-bg.png' %}" class="img-fluid" alt="image">
                         </div>
                     </div>
-                    <div class="foods-title aos" data-aos="fade-up">
-                        <a href="javascript:void(0);">Breakfast</a>
-                        <a href="javascript:void(0);">Lunch</a>
-                        <a href="javascript:void(0);">Snacks</a>
-                        <a href="javascript:void(0);">Dinner</a>
-                    </div>
+                   
                 </div>
             </div>
         </section>
@@ -103,15 +101,15 @@
 <!-- Partners Section -->
 <div class="partners-section">
     <div class="container">
-        <p class="partners-heading">Over 100+ Sponsors being in contact with us</p>
+        <p class="partners-heading">Serving Over 15+ Years .</p>
         
         <!-- Hotel Name -->
         <h2 class="hotel-name">Sky Hotel</h2>
         
         <ul class="owl-carousel partnerslist d-flex">
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-1.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-2.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-3.svg' %}" alt="partners"></a></li>
+            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'hotel.jpeg' %}" alt="partners"></a></li>
+            <li><a href="javascript:void(0);" style='font-weight:bold;'>Fanous Lebanese Restaurant</a></li>
+            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'logo1.png' %}" alt="partners"></a></li>
             <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-4.svg' %}" alt="partners"></a></li>
             <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-5.svg' %}" alt="partners"></a></li>
             <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-6.svg' %}" alt="partners"></a></li>
@@ -140,7 +138,7 @@
                     <div class="col-md-6 aos aos-init aos-animate" data-aos="fade-up">
                         <div class="section-heading">
                             <h2>Featu<span class="title-right">red</span> Rooms</h2>
-                            <p>Checkout these latest cool Hotel Room from our Hotel</p>
+                            <p>Checkout these Featured cool Hotel Room from our Hotel</p>
                         </div>
                     </div>
                     <div class="col-md-6 text-md-end aos" data-aos="fade-up">
@@ -188,7 +186,10 @@
                                                 <div class="location-info">
                                                     <i class="feather-map-pin"></i>Cyrpus
                                                     &nbsp
-                                                    <i class="fa-regular fa-clock"></i>Open
+                                                    <div style='background:green;color:white;padding:6px;'>
+                                                        <i class="fa-regular fa-clock"></i>24hrs Open
+                                                    </div>
+                                                   
                                                 </div>
                                                 <div class="location-info">
                                                     <i class="fa-regular fa-calendar-days"></i>{{hotelroom.room_type}}
@@ -201,8 +202,8 @@
                                                     <span>$450</span>
                                                 </div>
                                                 <div class="ratings">
-                                                   Capacity : {{hotelroom.capacity}}
-                                                </div>
+                                                    <span>4.7</span> (50)
+                                                </div>	
                                             </div>
                                         </div>
                                     </div>
@@ -281,7 +282,10 @@
                                                     <div class="location-info">
                                                         <i class="feather-map-pin"></i>Cyrpus
                                                         &nbsp
-                                                        <i class="fa-regular fa-clock"></i>Open
+                                                        <div style='background:green;padding:6px;color:white;'>
+                                                            <i class="fa-regular fa-clock"></i>24hrs Open
+                                                        </div>
+                                                        
                                                     </div>
                                                     <div class="location-info">
                                                         <i class="fa-regular fa-calendar-days"></i>{{room.room_type}}
@@ -294,9 +298,9 @@
                                                         <span>$450</span>
                                                     </div>
                                                     
-                                                        <div class="ratings">
-                                                            Capacity : {{hotelroom.capacity}}
-                                                         </div>
+                                                    <div class="ratings">
+                                                        <span>4.7</span> (50)
+                                                    </div>	
                                                     														
                                                 </div>	
                                             </div>	
