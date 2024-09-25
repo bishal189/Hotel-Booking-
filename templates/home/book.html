@@ -11,8 +11,6 @@
     </header>
     <!-- /Header -->
     
- 
-    
     <div class="list-content" >
         <div class="container">
 
@@ -22,9 +20,6 @@
                     <p>We are here to serve you</p>
                 </div>	
                
-              
-               
-                  
                     <div class="blog-listview">
                        
                         <div class="card">
@@ -96,6 +91,7 @@
                 <div class="contact-info">
                    <h2>Fill Up the form With <span>Us</span></h2> 
                    <p>We are here to serve you</p>
+                   <p style="color:red">{{booking_error}}</p>
                </div>		       
                <div class="row align-items-center">
                     <div class="col-lg-5 col-md-5">
@@ -120,11 +116,17 @@
                                 <div class="form-group">
                                     <label for="checkin_date">Check-in Date</label>
                                     <input type="date" id="checkin_date" name="checkin_date" class="form-control checkin-checkout"  required>
+                                    <label for="checkin_date">Check-in Time</label>
+                                    <input type="time" id="checkin_date" name="checkin_time" class="form-control checkin-checkout"  required>
+ 
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="checkout_date">Check-out Date</label>
                                     <input type="date" id="checkout_date" name="checkout_date" class="form-control checkin-checkout" required>
+                                    <label for="checkin_date">Check-out Time</label>
+                                    <input type="time" id="checkout_time" name="checkout_time" class="form-control checkin-checkout"  required>
+ 
                                 </div>
                                 
                                 

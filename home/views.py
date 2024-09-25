@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from datetime import datetime
 from core.models import Category,HotelRoom,Booking,Payment,Photo,Amenity,Review
 from home.models import BookMark,Contact
 from django.contrib import messages
@@ -72,10 +73,9 @@ def all_rooms(request):
 
     rooms_with_status = []
     for room in page_obj: 
-        is_booked = Booking.objects.filter(room=room).exists()
         rooms_with_status.append({
             'room': room,
-            'is_booked': is_booked
+            'is_booked': False
         })
 
     context = {
@@ -99,41 +99,51 @@ def booking_forms(request,id):
         message=request.POST.get('write_message')
         checkin_date=request.POST.get('checkin_date')
         checkout_date=request.POST.get('checkout_date')
+        checkin_time=request.POST.get('checkin_time')
+        checkout_time=request.POST.get('checkout_time')
         room=HotelRoom.objects.get(id=id)
-        room.is_booked=True
-        room.save()
-        
-        
-        # for time 
-        
-               
-        checkin_date = timezone.make_aware(timezone.datetime.strptime(checkin_date, "%Y-%m-%d"))
+
+        checkin_date_aware = timezone.make_aware(timezone.datetime.strptime(checkin_date, "%Y-%m-%d"))
         now = timezone.now()
-        
-        if checkin_date.date() == now.date():
-          
+
+        if checkin_date_aware.date() == now.date():
             payment_deadline = now
-        elif checkin_date.date() == now.date() + timedelta(days=1):
-          
+        elif checkin_date_aware.date() == now.date() + timedelta(days=1):
             payment_deadline = now + timedelta(hours=2)
         else:
-            
             payment_deadline = now + timedelta(days=1)  
 
+                    # Combine date and time into datetime objects
+        checkin_datetime_str = f"{checkin_date} {checkin_time}"
+        checkout_datetime_str = f"{checkout_date} {checkout_time}"
 
-        booking=Booking.objects.create(
+        # Parse the combined string into naive datetime objects
+        checkin_datetime = datetime.strptime(checkin_datetime_str, "%Y-%m-%d %H:%M")
+        checkout_datetime = datetime.strptime(checkout_datetime_str, "%Y-%m-%d %H:%M")
+
+        # Make datetime objects timezone-aware (if USE_TZ=True)
+        checkin_datetime = timezone.make_aware(checkin_datetime, timezone.get_current_timezone())
+        checkout_datetime = timezone.make_aware(checkout_datetime, timezone.get_current_timezone())
+
+        booking=Booking(
             guest_name=name,
             guest_email=email,
             guest_phone=phone_no,
-            check_in_date=checkin_date,
-            check_out_date=checkout_date,
+            check_in_date=checkin_datetime,
+            check_out_date=checkout_datetime,
             special_requests=message,
             room=room,
             guest=guest,
             payment_deadline=payment_deadline
         )
-        
-       
+        print(booking)
+        try:
+            booking.full_clean()
+            booking.save()
+        except Exception as e:
+            print(e)
+            request.session['booking_error']=str(e.message_dict.get('__all__',[]))
+            return redirect(reverse('booking_forms',kwargs={'id':id}))
        
         # if booking.payment_deadline <= now:
         #     return redirect('payment', booking_id=booking.id)
@@ -146,18 +156,16 @@ def booking_forms(request,id):
         messages.success(request, 'Booked  successfully!')
         return redirect('payment')
 
-    
-    
     else:
         room=HotelRoom.objects.get(id=id)
+        booking_error=request.session.pop('booking_error',None)
         context={
             'room':room,
             'id':id
         }
+        if booking_error:
+            context['booking_error']=booking_error
         return render(request,'home/book.html',context)
-    
-    
-    
 
 
 @login_required
