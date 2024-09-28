@@ -21,7 +21,7 @@ def home(request):
         available_rooms=Count('rooms', filter=Q(rooms__is_available=True))
     ) 
     feature=Amenity.objects.all().order_by('-id')
-    hotel_room=HotelRoom.objects.all().order_by('-id')
+    hotel_room=HotelRoom.objects.all()
     category=Category.objects.all().order_by('-id')
     reviews=Review.objects.all().order_by('-id')[:10]
     if request.user.is_authenticated:

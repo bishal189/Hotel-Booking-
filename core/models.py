@@ -41,7 +41,8 @@ class HotelRoom(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='rooms')
     amenities = models.ManyToManyField(Amenity, related_name='rooms')
     hotel_images=models.FileField(upload_to='hotelroom/')
-    #is_booked=models.BooleanField(default=False)
+    is_booked=models.BooleanField(default=False)
+    rating=models.CharField(max_length=100,blank=True,null=True)
     description=models.TextField(blank=True,null=True)
     created_at=models.DateTimeField(auto_now=True)
 

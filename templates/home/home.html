@@ -107,18 +107,12 @@
         <h2 class="hotel-name">Sky Hotel</h2>
         
         <ul class="owl-carousel partnerslist d-flex">
+            <li><a href="javascript:void(0);"  style='font-weight:bold;'>Fanous Lebanese Restaurant</a></li>
             <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'hotel.jpeg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);" style='font-weight:bold;'>Fanous Lebanese Restaurant</a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'logo1.png' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-4.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-5.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-6.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-1.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-2.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-3.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-4.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-5.svg' %}" alt="partners"></a></li>
-            <li><a href="javascript:void(0);"><img class="img-fluid" src="{% static 'assets/img/partners/partners-6.svg' %}" alt="partners"></a></li>
+           
+            <li><a href="javascript:void(0);"  style='font-weight:bold;'>Rami's Cafe</a></li>
+            <li><a href="javascript:void(0);" style='font-weight:bold;'><img class="img-fluid" src="{% static 'logo.png' %}" alt="partners"></a></li>
+          
         </ul>
     </div>
 </div>		
@@ -186,9 +180,9 @@
                                                 <div class="location-info">
                                                     <i class="feather-map-pin"></i>Cyrpus
                                                     &nbsp
-                                                    <div style='background:green;color:white;padding:6px;'>
+                                                    {% comment %} <div style='background:green;color:white;padding:6px;'>
                                                         <i class="fa-regular fa-clock"></i>24hrs Open
-                                                    </div>
+                                                    </div> {% endcomment %}
                                                    
                                                 </div>
                                                 <div class="location-info">
@@ -198,11 +192,11 @@
                                             
                                             <div class="amount-details">
                                                 <div class="amount">
-                                                    <span class="validrate">${{hotelroom.price_per_night}}</span>
-                                                    <span>$450</span>
+                                                    <span class="validrate">€{{hotelroom.price_per_night}}</span>
+                                                   
                                                 </div>
                                                 <div class="ratings">
-                                                    <span>4.7</span> (50)
+                                                    <span>{{hotelroom.rating}}</span> (50)
                                                 </div>	
                                             </div>
                                         </div>
@@ -282,10 +276,10 @@
                                                     <div class="location-info">
                                                         <i class="feather-map-pin"></i>Cyrpus
                                                         &nbsp
-                                                        <div style='background:green;padding:6px;color:white;'>
+                                                        {% comment %} <div style='background:green;padding:6px;color:white;'>
                                                             <i class="fa-regular fa-clock"></i>24hrs Open
                                                         </div>
-                                                        
+                                                         {% endcomment %}
                                                     </div>
                                                     <div class="location-info">
                                                         <i class="fa-regular fa-calendar-days"></i>{{room.room_type}}
@@ -294,12 +288,12 @@
                                                 
                                                 <div class="amount-details">
                                                     <div class="amount">
-                                                        <span class="validrate">${{room.price_per_night}}</span>
-                                                        <span>$450</span>
+                                                        <span class="validrate">€{{room.price_per_night}}</span>
+                                                       
                                                     </div>
                                                     
                                                     <div class="ratings">
-                                                        <span>4.7</span> (50)
+                                                        <span>{{room.rating}}</span> (50)
                                                     </div>	
                                                     														
                                                 </div>	
