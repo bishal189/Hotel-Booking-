@@ -30,6 +30,23 @@
 
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+	<style>
+		.btn{
+			background:#1e40af;
+			border-color:#1e40af;
+			color:#fff;
+		}
+		.btn:hover{
+			background:#93c5fd;
+			border-color:#93c5fd;
+		}
+		.nav-link.header-login{
+			background: #1e40af !important;
+			border-color:#1e40af !important;
+		}
+	
+	</style>
+	
 	
 </head>
 
@@ -47,30 +64,18 @@
 		<!--Galler Slider Section-->
 
 		<div class="bannergallery-section">
-			<div class="gallery-slider d-flex">
+			<div style="margin-top:85px;"  class="gallery-slider d-flex">
+				{% for image in photo %}
 				<div class="gallery-widget">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-1.jpg' %}" data-fancybox="gallery1">
-						<img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-1.jpg' %}">
+					<a href="{{ image.image.url }}" data-fancybox="gallery1">
+						<img style="height:300px;" class="img-fluid" alt="Image" src="{{image.image.url}}">
 					</a>
 				</div>	
-				<div class="gallery-widget">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-2.jpg' %}" data-fancybox="gallery1">
-						<img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-2.jpg' %}">
-					</a>
-				</div>								
-				<div class="gallery-widget">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-3.jpg' %}" data-fancybox="gallery1">
-						<img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-3.jpg' %}">
-					</a>
-				</div>	
-				<div class="gallery-widget">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-4.jpg' %}" data-fancybox="gallery1">
-						<img class="img-fluid" alt="Image" src="{% static 'assets/img/gallery/gallery1/gallery-4.jpg' %}">
-					</a>
-				</div>			
 				<div class="showphotos">
-					<a href="{% static 'assets/img/gallery/gallery1/gallery-3.jpg' %}" data-fancybox="gallery1">... Show Photos</a>
+					<a href="{{image.image.url}}" data-fancybox="gallery1"> Show Photos</a>
 				</div>								
+				{% endfor %}
+											
 			</div>			
 		</div>	
 
@@ -83,20 +88,21 @@
 				     <div class="about-headings">
 					      
 						  <div class="authordetails">
-						       <h5>Sleep In a Room in Hotel</h5>
-							   <p>Luxury hotel in the heart of Blommsbury</p>
+							<h5>{{room.room_number}}</h5>
+						       <h5>Rest In a Hotel Room.</h5>
+							   <p>Luxury hotel in the heart of Cyprus</p>
 							   <div class="rating">
 									<i class="fas fa-star filled"></i>
 									<i class="fas fa-star filled"></i>
 									<i class="fas fa-star filled"></i>
 									<i class="fas fa-star filled"></i>
 									<i class="fas fa-star filled"></i>
-									<span class="d-inline-block average-rating"> 5 </span>
+									<span class="d-inline-block average-rating">{{room.rating}} </span>
 							   </div>
 						  </div>
 					 </div>
 					 <div class="rate-details">
-					     <h2>${{room.price_per_night}}</h2>
+					     <h2>€{{room.price_per_night}}</h2>
 						 <p>Fixed</p>
 						 <a class='btn btn-primary' href='{%  url 'booking_forms' id %}'>Book Now</a>
 					 </div>				  
@@ -105,12 +111,12 @@
 					<div class="row">
 						  <div class="col-lg-9">
 							  <ul>
-								  <li><a href="javascript:void(0);"><i class="feather-map"></i> Get Directions</a></li>
-								  <li><a href="javascript:void(0);"><img src="{% static 'assets/img/website.svg' %}" alt="website">Website</a></li>
+								  <li><a href="https://www.google.com/maps/place/Sky+Hotel/@35.1707555,33.3621487,17z/data=!3m1!4b1!4m9!3m8!1s0x14de175ad83a9f81:0xf1255bba300d6a06!5m2!4m1!1i2!8m2!3d35.1707555!4d33.3621487!16s%2Fg%2F1tm6ttwb?entry=ttu&g_ep=EgoyMDI0MDkyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank"><i class="feather-map"></i> Get Directions</a></li>
+								  <li><a href="{% url 'home' %}"><img src="{% static 'assets/img/website.svg' %}" alt="website">Website</a></li>
 								  <li><a href="javascript:void(0);"><i class="feather-share-2"></i> share</a></li>
 								  <li><a href="javascript:void(0);"><i class="fa-regular fa-comment-dots"></i> Write a review</a></li>
 								  <li><a href="javascript:void(0);"><i class="feather-flag"></i> report</a></li>
-								  <li><a href="javascript:void(0);"><i class="feather-heart"></i> Save</a></li>
+								  <li><a href=""><i class="feather-heart"></i> Save</a></li>
 							  </ul>
 						  </div>
 						 
@@ -190,7 +196,7 @@
 										{% for photo in photos %}
                                         <div class="col-lg-3 col-md-3 col-sm-3">
                                             <div class="gallery-widget">
-                                                <a href="{% static 'assets/img/gallery/gallery1/gallery-5.jpg' %}" data-fancybox="gallery1">
+                                                <a href="{{photo.image.url}}" data-fancybox="gallery1">
                                                     <img class="img-fluid" alt="Image" src="{{photo.image.url}}">
                                                 </a>
                                             </div>

@@ -27,7 +27,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-12">
                             <div class="section-search aos" data-aos="fade-up">
-                                <p>Discover the best restaurant.</p>
+                                <p>Discover the best Hotel.</p>
                                 <h1>Having a place to stay as Home is a Blessing.</h1>
                                 <div class="search-box search-box-seven">
                                     <form action="{% url 'all_rooms' %}" class="form-block d-flex">
@@ -44,14 +44,12 @@
                                         </div>
                                         <div class="search-input line">
                                             <div class="form-group select-location mb-0">
-                                                <select  class="form-control select category-select" name='max_price' >
+                                                <select  class="form-control select category" name='max_price' >
                                                     <option value="">Price</option>
                                                     <option>50</option>
-                                                    <option>100</option>
-                                                    <option>150</option>
-                                                    <option>200</option>
+                                                   
                                                 </select>
-                                                <i class="feather-map-pin"></i>
+                                              
                                             </div>
                                         </div>
                                         <div class="search-btn">
@@ -170,7 +168,7 @@
                                                     <a href="javascript:void(0)"><span><i class="fa-regular fa-circle-stop"></i>{{hotelroom.category.name}}</span></a>
                                                 </div>
                                                 <div class="blog-author text-end">
-                                                    <span><i class="feather-eye"></i>4000</span>
+                                                    <span><i class="feather-eye"></i>{{hotelroom.view_count}}</span>
                                                 </div>
                                             </div>
                                           
@@ -192,11 +190,11 @@
                                             
                                             <div class="amount-details">
                                                 <div class="amount">
-                                                    <span class="validrate">€{{hotelroom.price_per_night}}</span>
+                                                    <span class="validrate" style='color:blue;'>€{{hotelroom.price_per_night}}</span>
                                                    
                                                 </div>
                                                 <div class="ratings">
-                                                    <span>{{hotelroom.rating}}</span> (50)
+                                                    <span style='color:yellow;'>{{hotelroom.rating}}</span> (50)
                                                 </div>	
                                             </div>
                                         </div>
@@ -268,13 +266,13 @@
                                                        <a href="javascript:void(0)"><span>  <i class="fa-regular fa-circle-stop"></i> {{room.category.name}}</span></a>
                                                     </div>																	  
                                                     <div class="blog-author text-end"> 
-                                                        <span>  <i class="feather-eye"></i> 4000  </span>
+                                                        <span>  <i class="feather-eye"></i> {{room.view_count}} </span>
                                                     </div>
                                                 </div> 
                                                 <h6><a href="{% url 'details' room.id %}">{{room.room_number}}</a></h6>
                                                 <div class="blog-location-details">
                                                     <div class="location-info">
-                                                        <i class="feather-map-pin"></i>Cyrpus
+                                                        <i class="feather-map-pin"></i>Cyprus
                                                         &nbsp
                                                         {% comment %} <div style='background:green;padding:6px;color:white;'>
                                                             <i class="fa-regular fa-clock"></i>24hrs Open
@@ -288,12 +286,12 @@
                                                 
                                                 <div class="amount-details">
                                                     <div class="amount">
-                                                        <span class="validrate">€{{room.price_per_night}}</span>
+                                                        <span class="validrate" style='color:blue;'>€{{room.price_per_night}}</span>
                                                        
                                                     </div>
                                                     
                                                     <div class="ratings">
-                                                        <span>{{room.rating}}</span> (50)
+                                                        <span style='color:yellow'>{{room.rating}}</span> (50)
                                                     </div>	
                                                     														
                                                 </div>	

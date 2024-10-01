@@ -296,7 +296,9 @@ def details(request,id):
     photos=Photo.objects.filter(hotel=room)
     reviews=Review.objects.filter(hotel_room=room)
     photo=Photo.objects.filter(hotel=room)[:5]
-    print(photos,'photos')
+    room.view_count+=1 
+    room.save()
+    
     context={
         'photos':photos,
         'room':room,

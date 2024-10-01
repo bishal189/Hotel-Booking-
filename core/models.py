@@ -43,6 +43,7 @@ class HotelRoom(models.Model):
     hotel_images=models.FileField(upload_to='hotelroom/')
     is_booked=models.BooleanField(default=False)
     rating=models.CharField(max_length=100,blank=True,null=True)
+    view_count=models.IntegerField(default=0)
     description=models.TextField(blank=True,null=True)
     created_at=models.DateTimeField(auto_now=True)
 
