@@ -33,48 +33,8 @@
 		<div class="list-content">
 		    <div class="container">
 		        <div class="row">
-		            <div class="col-lg-4 theiaStickySidebar">
-			            <div class="listings-sidebar">
-						    <div class="card">
-				                <h4><img  src="{% static 'assets/img/details-icon.svg' %}" alt="details-icon"> Filter</h4>
-							    <form action='{% url 'all_rooms' %}' method='GET' >
-								   
-
-									
-									
-									<div class="filter-content form-group amenities">
-									    <h4> Amenities</h4>
-										<ul>
-
-											{% for feature in features %}
-											<li>
-												<label class="custom_check">
-												<input type="checkbox" name="feature">
-												<span class="checkmark"></span>{{feature.name}}
-												</label>
-											</li>
-											{% endfor %}
-											
-											
-										</ul>
-									</div>
-																	
-									<div class="filter-content amenities mb-0">
-    									<h4> Price Range</h4>
-										<div class="form-group mb-0">
-										     <input type="text" class="form-control" placeholder="Min" name='min_price'>
-										     <input type="text" class="form-control me-0" placeholder="Max" name='max_price'>
-										</div>
-										<div class="search-btn">
-											<button class="btn btn-primary" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> Search</button>
-											<button class="btn btn-reset mb-0" type="submit"> <i class="fas fa-light fa-arrow-rotate-right"></i> Reset Filters</button>
-										</div>  
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-8">
+		          
+					<div class="col-lg-10">
                         <div class="row sorting-div">
 					    	<div class="col-lg-4 col-sm-4 align-items-center d-flex">
 								<div class="count-search">
@@ -135,13 +95,13 @@
                                           
                                             <div class="blog-location-details">
                                                 <div class="location-info">
-                                                    <i class="feather-map-pin"></i> Cyrpus
+                                                    <i class="feather-map-pin"></i> Cyprus
                                                 </div>
                                                 <div class="location-info">
-                                                    <i class="feather-phone-call"></i> +44 6633 6526
+                                                    <i class="feather-phone-call"></i>+375 22 666 880 
                                                 </div>
                                                 <div class="location-info">
-                                                    <i class="feather-eye"></i> 4000
+                                                    <i class="feather-eye"></i>{{room.view_count}}
                                                 </div>
                                             </div>
                                             <div class="ratings" style="display:flex; justify-content:space-between;">
@@ -157,8 +117,8 @@
                                             </div>
                                             <div class="amount-details">
                                                 <div class="amount">
-                                                    <span class="validrate">€{{ room.price_per_night|floatformat:0 }} per night</span>
-                                                    <span>$450</span>
+                                                    <span class="validrate" style='color:blue;'>€{{ room.price_per_night|floatformat:0 }} per night</span>
+                                                    
                                                 </div>
                                                 <a href="service-details.html">View details</a>
                                                 <!-- Book Now Button -->
