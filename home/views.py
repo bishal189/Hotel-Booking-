@@ -47,7 +47,7 @@ def home(request):
 
 
 def all_rooms(request):
-    hotel_room = HotelRoom.objects.all().order_by('-id')
+    hotel_room = HotelRoom.objects.all()
     book = Booking.objects.all()
     features = Amenity.objects.all()  
 
