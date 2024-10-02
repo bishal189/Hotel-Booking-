@@ -34,7 +34,7 @@ def Login(request):
             messages.success(request, "You are now logged in.")
             return redirect("home")
         else:
-            messages.error(request,'Some informations are incorrect!')
+            messages.error(request,'Incorrect Email or Password.')
             return render(request, "accounts/login.html")
     else:
         return render(request, "accounts/login.html")
@@ -66,26 +66,26 @@ def Register(request):
             profile.save()
 
             # Send activation email
-            current_site = get_current_site(request)
-            mail_subject = "Please activate your account"
-            message = render_to_string(
-                "accounts/account_verfication_email.html",
-                {
-                    "user": user,
-                    "domain": current_site,
-                    "uid": urlsafe_base64_encode(force_bytes(user.pk)),
-                    "token": default_token_generator.make_token(user),
-                },
-            )
-            to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
-            send_email.content_subtype = "html"
-            send_email.send()
+            # current_site = get_current_site(request)
+            # mail_subject = "Please activate your account"
+            # message = render_to_string(
+            #     "accounts/account_verfication_email.html",
+            #     {
+            #         "user": user,
+            #         "domain": current_site,
+            #         "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+            #         "token": default_token_generator.make_token(user),
+            #     },
+            # )
+            # to_email = email
+            # send_email = EmailMessage(mail_subject, message, to=[to_email])
+            # send_email.content_subtype = "html"
+            # send_email.send()
             messages.success(
                 request,
-                f"sent a verification email .Please verify it.",
+                f"Account Created.",
             )
-            return redirect("register")
+            return redirect("login")
         else:
             messages.error(request, "Email address is already registered.")
             return render(request, "accounts/register.html")
